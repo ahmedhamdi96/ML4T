@@ -18,7 +18,7 @@ def main():
     print("Original Line:", "y = {}x + {}".format(original_line_coefficients[0], original_line_coefficients[1]))
     x_points = np.linspace(0, 10, 50)
     y_points = original_line_coefficients[0] * x_points + original_line_coefficients[1]
-    plt.plot(x_points, y_points, 'b--', label="Original Line")
+    plt.plot(x_points, y_points, 'b-', label="Original Line")
     #Original Line after applying noise
     noise_sigma = 3.0
     noise = np.random.normal(0, noise_sigma, y_points.shape)
