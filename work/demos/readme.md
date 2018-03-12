@@ -1,1 +1,1 @@
-This directory contains exercise files
+This directory contains exercise files.
