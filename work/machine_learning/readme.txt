@@ -1,0 +1,1 @@
+This directory contains projects applying different machine learning algorithms on historical data of different companies to produce trading predictions.
