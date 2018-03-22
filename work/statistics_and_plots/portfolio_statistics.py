@@ -1,8 +1,8 @@
-import read_and_plot_stocks
+from utils.util import get_data
 import math
 
 def compute_daily_portfolio_value(capital, symbols, start_date, end_date, allocations):
-    df = read_and_plot_stocks.get_data(symbols, start_date, end_date)
+    df = get_data(symbols, start_date, end_date)
     #normalization
     normalized = df/df.ix[0, :]
     #allocation

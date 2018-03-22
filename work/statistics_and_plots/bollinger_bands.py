@@ -1,4 +1,4 @@
-import read_and_plot_stocks
+from utils.util import get_data, plot_data
 import matplotlib.pyplot as plt
 
 def get_bollinger_bands(mean, std):
@@ -11,7 +11,7 @@ def main():
     end_date = "31/12/2017"
     symbols = ["SPY", "AAPL", "FB"]
 
-    df = read_and_plot_stocks.get_data(symbols, start_date, end_date)
+    df = get_data(symbols, start_date, end_date)
     print(df)
 
     spy = df["SPY"]

@@ -1,48 +1,9 @@
+from utils.util import get_data, plot_data
 import os
 import pandas as pd
 import numpy as np
 import scipy.optimize as spo
 import matplotlib.pyplot as plt
-
-def get_file_path(file_name, backtracking_depth, *directories):
-    base = os.path.dirname(__file__)
-    depth = backtracking_depth
-
-    while depth > 0:
-        base = os.path.dirname(base)
-        depth -= 1
-
-    for i in range(0, len(directories)):
-        base =  os.path.join(base, directories[i])
-
-    path =  os.path.join(base, file_name)
-    return path
-
-def symbol_to_path(symbol):
-    base = os.path.dirname(__file__)
-    depth = 2
-
-    while depth > 0:
-        base = os.path.dirname(base)
-        depth -= 1
-    
-    path =  os.path.join(base, "resources", "historical_data_2017", "{}.csv".format(symbol))
-    return path
-
-def get_data(symbols, start_date, end_date):
-    if "SPY" not in symbols:
-        symbols.insert(0, "SPY")
-
-    dates_index = pd.date_range(start=start_date, end=end_date)
-    df = pd.DataFrame(index = dates_index)
-
-    for symbol in symbols:
-        df_temp = pd.read_csv(symbol_to_path(symbol), index_col="Date",
-        parse_dates=True, usecols=["Date", "Adj Close"], na_values="nan")
-        df_temp = df_temp.rename(columns={"Adj Close" : symbol})
-        df = df.join(df_temp, how="right")
-
-    return df
 
 def error_fun(coefficients, data):
     actual_values = data[:, 1]

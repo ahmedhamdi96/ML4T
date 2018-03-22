@@ -1,4 +1,4 @@
-import read_and_plot_stocks
+from utils.util import get_data, plot_data
 
 def get_daily_returns(dataframe):
     #.values should be used to prevent pandas from auto matching indices
@@ -18,15 +18,15 @@ def main():
     end_date = "31/12/2017"
     symbols = ["SPY", "FB"]
 
-    df = read_and_plot_stocks.get_data(symbols, start_date, end_date)
+    df = get_data(symbols, start_date, end_date)
     print(df)
-    read_and_plot_stocks.plot_data(df, "Stock Prices", "Adj Close Price", "Date")
+    plot_data(df, "Stock Prices", "Adj Close Price", "Date")
 
     daily_returns = get_daily_returns(df)
-    read_and_plot_stocks.plot_data(daily_returns, "Daily Returns", "Daily Return", "Date")
+    plot_data(daily_returns, "Daily Returns", "Daily Return", "Date")
 
     cumulative_returns = get_cumulative_returns(df)
-    read_and_plot_stocks.plot_data(cumulative_returns, "Cumulative Returns", "Cumulative Return", "Date")
+    plot_data(cumulative_returns, "Cumulative Returns", "Cumulative Return", "Date")
 
 if __name__ == "__main__":
     main()
