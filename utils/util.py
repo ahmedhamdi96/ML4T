@@ -12,7 +12,7 @@ the stock historical data
 *symbol : stock symbol
 *depth  : directory depth from the root
 '''
-def symbol_to_path(symbol, depth=0):
+def symbol_to_path(symbol, depth=1):
     base = os.path.dirname(__file__)
 
     while depth > 0:
@@ -60,6 +60,7 @@ def plot_data(dataframe, plot_title, xlabel, ylabel):
     ax.set_xlabel(xlabel)
     ax.set_xlabel(ylabel)
     ax.legend(loc="upper left")
+    ax.grid(True)
     plt.show()
 
 '''a tester function

@@ -1,0 +1,1 @@
+This directory contains utility files that contain basic essential functions used throughout the project.
