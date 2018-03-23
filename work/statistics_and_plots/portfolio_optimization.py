@@ -8,20 +8,8 @@ def error_function(allocations, df_portfolio):
     #Daily Portfolio Value
     daily_portfolio_value = portfolio_statistics.compute_daily_portfolio_value(df_portfolio, 1, allocations)
 
-    #Daily Portfolio Return
-    daily_portfolio_return = portfolio_statistics.compute_daily_portfolio_return(daily_portfolio_value)
-
-    #Cummulative Portfolio Return
-    cummulative_portfolio_return = portfolio_statistics.compute_cummulative_portfolio_return(daily_portfolio_value)
-
-    #Daily Portfolio Return Mean
-    mean_daily_portfolio_return = portfolio_statistics.compute_mean_daily_portfolio_return(daily_portfolio_return)
-
-    #Daily Portfolio Return Standard Deviation
-    std_daily_portfolio_return = portfolio_statistics.compute_std_daily_portfolio_return(daily_portfolio_return)
-
-    #Daily Sampled Sharpe Ratio
-    daily_sampled_sharpe_ratio = portfolio_statistics.compute_daily_sampled_sharpe_ratio(mean_daily_portfolio_return, std_daily_portfolio_return)
+    #Portfolio Statistics
+    cummulative_portfolio_return, _, _, _ = portfolio_statistics.compute_portfolio_statistics(daily_portfolio_value)
 
     return -1*cummulative_portfolio_return
 

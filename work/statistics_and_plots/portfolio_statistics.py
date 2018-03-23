@@ -13,7 +13,6 @@ def compute_daily_portfolio_value(df, capital, allocations):
     return port_val
 
 def compute_daily_portfolio_return(daily_portfolio_value):
-    print(daily_portfolio_value.shape)
     return daily_portfolio_value[1:] / daily_portfolio_value[:-1].values - 1
 
 def compute_cummulative_portfolio_return(daily_portfolio_value):
@@ -46,7 +45,6 @@ def main():
 
     #Portfolio Dataframe
     df_portfolio = get_data(symbols, start_date, end_date)
-    print(df_portfolio.columns)
     df_SPY = df_portfolio.ix[:, "SPY"]
 
     #Daily Portfolio Value
