@@ -19,7 +19,7 @@ def symbol_to_path(symbol, depth=1):
         base = os.path.dirname(base)
         depth -= 1
     
-    path =  os.path.join(base, "resources", "historical_data_2017", "{}.csv".format(symbol))
+    path =  os.path.join(base, "resources", "historical_data", "{}.csv".format(symbol))
     return path
 
 '''this function creates a dataframe of chosen stocks with 
@@ -44,7 +44,7 @@ def get_data(symbols, start_date, end_date, include_SPY=True):
                               parse_dates=True, usecols=["Date", "Adj Close"],
                               na_values="nan")
         df_temp = df_temp.rename(columns={"Adj Close" : symbol})
-        df = df.join(df_temp, how="right")
+        df = df.join(df_temp, how="inner")
 
     return df
 
