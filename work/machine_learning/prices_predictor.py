@@ -20,19 +20,20 @@ def compute_bollinger_bands_ratio(prices, window):
 def normalize_ratio(prices):
     return prices - prices.mean()/prices.std()
 
-def evaluate_predictions(learner, input_values, actual_values):
-    #TODO: not yet implemented
+def evaluate_predictions(learner, input_values, actual_values, trading_days_df):
     predicted_values = learner.query(input_values)
-    #predicted_values.shift(periods=5)
-    #actual_values.shift(periods=5)
-    print(predicted_values)
-    print(actual_values)
 
-    rmse = (((actual_values - predicted_values) ** 2).sum() / actual_values.shape) ** 0.5
-    #correlation = [actual_values, predicted_values].corr()
+    trading_days_df['predicted_values'] = predicted_values
+    trading_days_df['actual_values'] = actual_values
+
+    rmse = (((actual_values - predicted_values) ** 2).sum() / actual_values.shape[0]) ** 0.5
+    correlation = trading_days_df.ix[:, ['predicted_values', 'actual_values']].corr()
 
     print("RMSE:", rmse)
-    #print("Correlation:". correlation)
+    print("Correlation:", correlation.ix[0, 1])
+
+    df = trading_days_df.ix[:, ['predicted_values', 'actual_values']]
+    plot_data(df, "Predicted vs Actual Prices", "Date", "Price", leg_loc="best")
 
 def main():
     training_start_date = '01/01/2015'
@@ -81,10 +82,21 @@ def main():
     knn_learner = knn.knn(3)
     knn_learner.train(trainX, trainY)
 
+    #trading days df
+    training_days_df = pd.DataFrame(index=training_date_range)
+    training_days_df['actual_prices'] = training_prices_df[stock]
+    training_days_df = training_days_df.dropna(subset=['actual_prices'])
+
+    testing_days_df = pd.DataFrame(index=testing_date_range)
+    testing_days_df['actual_prices'] = testing_prices_df[stock]
+    testing_days_df = testing_days_df.dropna(subset=['actual_prices'])
+
     #Insample Testing
-    evaluate_predictions(knn_learner, trainX, trainY)
+    print("Insample Testing")
+    evaluate_predictions(knn_learner, trainX, trainY, training_days_df)
     #Outsample Testing
-    evaluate_predictions(knn_learner, testX, testY)
+    print("\nOutsample Testing")
+    evaluate_predictions(knn_learner, testX, testY, testing_days_df)
 
 if __name__ == "__main__":
     main()

@@ -54,12 +54,13 @@ def get_data(symbols, start_date, end_date, include_SPY=True):
 *plot_title     : the plot title
 *xlabel         : the horizontal axis label
 *ylabel         : the vertical axis label
+*leg_loc        : legend location
 '''
-def plot_data(dataframe, plot_title, xlabel, ylabel):
+def plot_data(dataframe, plot_title, xlabel, ylabel, leg_loc="upper left"):
     ax = dataframe.plot(title=plot_title)
     ax.set_xlabel(xlabel)
-    ax.set_xlabel(ylabel)
-    ax.legend(loc="upper left")
+    ax.set_ylabel(ylabel)
+    ax.legend(loc=leg_loc)
     ax.grid(True)
     plt.show()
 
