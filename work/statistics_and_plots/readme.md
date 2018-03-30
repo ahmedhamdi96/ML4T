@@ -1,1 +1,2 @@
-This directory contains files applying statistics on historical data of different companies, and plotting the data in different graphs.
+This directory contains files calculating statistics, and representing data visually.
+It also includes files dealing with portfolio management, statistics, and optimization.
