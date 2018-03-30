@@ -21,6 +21,7 @@ def normalize_ratio(prices):
     return prices - prices.mean()/prices.std()
 
 def evaluate_predictions(learner, input_values, actual_values):
+    #TODO: not yet implemented
     predicted_values = learner.query(input_values)
     #predicted_values.shift(periods=5)
     #actual_values.shift(periods=5)
@@ -32,8 +33,6 @@ def evaluate_predictions(learner, input_values, actual_values):
 
     print("RMSE:", rmse)
     #print("Correlation:". correlation)
-
-
 
 def main():
     training_start_date = '01/01/2015'
