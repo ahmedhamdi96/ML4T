@@ -109,7 +109,9 @@ def main():
     Y_test_unscaled = test_dataset_unscaled[:, -1]
     
     rmse = (mean_squared_error(predictions_unscaled, Y_test_unscaled) ** 0.5)
-    print('Test RMSE: %.3f' % rmse)
+    print('Test RMSE: %.3f' %(rmse))
+    correlation = np.corrcoef(predictions_unscaled, Y_test_unscaled)
+    print("Correlation: %.3f"%(correlation[0, 1]))
 
     _, (ax1, ax2) = plt.subplots(2,1)
     ax1.plot(history.history['loss'], label='Training')
