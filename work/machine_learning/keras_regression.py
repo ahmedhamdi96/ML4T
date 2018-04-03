@@ -37,22 +37,22 @@ def main():
     results = model.evaluate(X_test, Y_test)
     results_names = model.metrics_names
     print(results_names, ":", results)
-    # predictions
+    #predictions
     predictions_scaled = model.predict(X_test)
     test_dataset_scaled = np.concatenate((X_test, predictions_scaled), axis=1)
     test_dataset_unscaled = scaler.inverse_transform(test_dataset_scaled)
     predictions_unscaled = test_dataset_unscaled[:, -1]
-
+    #actual values
     Y_test = Y_test.reshape((Y_test.shape[0], 1))
     test_dataset_scaled = np.concatenate((X_test, Y_test), axis=1)
     test_dataset_unscaled = scaler.inverse_transform(test_dataset_scaled)
     Y_test_unscaled = test_dataset_unscaled[:, -1]
-    
+    #evaluation
     rmse = (mean_squared_error(predictions_unscaled, Y_test_unscaled) ** 0.5)
     print('Test RMSE: %.3f' %(rmse))
     correlation = np.corrcoef(predictions_unscaled, Y_test_unscaled)
     print("Correlation: %.3f"%(correlation[0, 1]))
-
+    #plotting
     _, (ax1, ax2) = plt.subplots(2,1)
     ax1.plot(history.history['loss'], label='Training')
     ax1.plot(history.history['val_loss'], label='Validation')
