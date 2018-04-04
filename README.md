@@ -12,13 +12,13 @@ This is the experimentation section of the thesis.
 ## Algorithms Evaluation (so far)
 *Algorithm: (RMSE, Correlation)*
 * <strong> Linear Regression: (3.328, 0.948)</strong>
-![Linear Regression](https://github.com/ahmedhamdi96/ML4T/results/lin_reg.png)
+![Linear Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/lin_reg.png)
 * <strong> kNN Regression: (3.938, 0.941)</strong>
-![kNN Regression](https://github.com/ahmedhamdi96/ML4T/results/knn.png)
+![kNN Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/knn.png)
 * <strong> Keras Regression: (3.360, 0.947)</strong>
-![Keras Regression](https://github.com/ahmedhamdi96/ML4T/results/keras_reg.png)
+![Keras Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/keras_reg.png)
 * <strong> Keras RNN LSTM: (3.405, 0.949)</strong>
-![Keras RNN LSTM](https://github.com/ahmedhamdi96/ML4T/results/lstm.png)
+![Keras RNN LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/lstm.png)
 
 ## Software and Libraries
 This project uses the following software and Python libraries:
