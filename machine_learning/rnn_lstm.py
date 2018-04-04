@@ -6,7 +6,7 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import mean_squared_error
-from work.machine_learning.dataset_preprocessing import get_dataset_dataframe
+from machine_learning.dataset_preprocessing import get_dataset_dataframe
 
 def compute_momentum_ratio(prices, window):
     #first window elements >> NA

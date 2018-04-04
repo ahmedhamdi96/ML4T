@@ -5,7 +5,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
-from work.machine_learning.dataset_preprocessing import get_dataset_dataframe
+from machine_learning.dataset_preprocessing import get_dataset_dataframe
 
 def main():
     #getting the preprocessed dataset dataframe

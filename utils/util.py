@@ -1,7 +1,7 @@
 ''' this file contains functions that are used in most files
 of this project, it contains utility functions to read and
-plot stock historical data'''
-
+plot stock historical data
+'''
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -56,7 +56,7 @@ def get_data(symbols, start_date, end_date, include_SPY=True):
 *ylabel         : the vertical axis label
 *leg_loc        : legend location
 '''
-def plot_data(dataframe, plot_title, xlabel, ylabel, leg_loc="upper left"):
+def plot_data(dataframe, plot_title, xlabel, ylabel, leg_loc="best"):
     ax = dataframe.plot(title=plot_title)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -77,7 +77,7 @@ def main():
     dataframe_sliced = df.ix[:, column_slicing]
     plot_data(dataframe_sliced, "Selected Stock Prices", "Date", "Price")
 
-'''to ensure running the tester function only when this file is run not imported
+'''to ensure running the tester function only when this file is run, not imported
 '''
 if __name__ == "__main__":
     main()

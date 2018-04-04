@@ -1,6 +1,16 @@
+''' this file constructs a portfolio and computes some
+portfolio statistics
+'''
 import pandas as pd
 from utils.util import get_data, plot_data
 
+'''this helper function computes the daily value
+of a portfolio
+
+*df           : dataframe containing the stocks to be included
+*capital      : starting portfolio capital
+*allocations  : allocations to the chosen stocks
+'''
 def compute_daily_portfolio_value(df, capital, allocations):
     #normalization
     normalized = df/df.ix[0, :]
@@ -12,6 +22,9 @@ def compute_daily_portfolio_value(df, capital, allocations):
     port_val = pos_val.sum(axis=1)
     return port_val
 
+'''five helper functions, each computing and returning a portfolio statistic
+'''
+#BEGIN
 def compute_daily_portfolio_return(daily_portfolio_value):
     return daily_portfolio_value[1:] / daily_portfolio_value[:-1].values - 1
 
@@ -26,7 +39,13 @@ def compute_std_daily_portfolio_return(daily_portfolio_return):
 
 def compute_daily_sampled_sharpe_ratio(mean_daily_portfolio_return, std_daily_portfolio_return):
     return (252**0.5) * mean_daily_portfolio_return/std_daily_portfolio_return
+#END
 
+'''this helper function wraps all the helper functions that compute 
+the daily statistics of a portfolio and returns all the statistics
+
+*daily_portfolio_value : dataframe containing the daily values of a portfolio
+'''
 def compute_portfolio_statistics(daily_portfolio_value):
     daily_portfolio_return =  compute_daily_portfolio_return(daily_portfolio_value)
     cummulative_portfolio_return = compute_cummulative_portfolio_return(daily_portfolio_value)
@@ -36,6 +55,8 @@ def compute_portfolio_statistics(daily_portfolio_value):
 
     return cummulative_portfolio_return, mean_daily_portfolio_return, std_daily_portfolio_return, daily_sampled_sharpe_ratio
 
+'''a tester function
+'''
 def main():
     capital = 100000
     symbols = ["AAPL", "FB", "GOOG", "SPY"]
@@ -49,7 +70,7 @@ def main():
 
     #Daily Portfolio Value
     daily_portfolio_value = compute_daily_portfolio_value(df_portfolio, capital, allocations)
-    #print(daily_portfolio_value)
+    print(daily_portfolio_value.head())
 
     #Daily Portfolio Return
     daily_portfolio_return = compute_daily_portfolio_return(daily_portfolio_value)
@@ -76,5 +97,7 @@ def main():
     df_comparsion = pd.concat([daily_portfolio_value_normalized, df_SPY_normalized], keys=["Portfolio", "SPY"], axis=1)
     plot_data(df_comparsion, "Portfolio 2017 Normalized Price", "Date", "Price")
 
+'''to ensure running the tester function only when this file is run not imported
+'''
 if __name__ == "__main__":
     main()

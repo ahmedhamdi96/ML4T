@@ -1,5 +1,5 @@
 from utils.util import get_data, plot_data
-import work.machine_learning.knn as knn
+import machine_learning.knn as knn
 import pandas as pd
 import matplotlib.pyplot as plt
 
