@@ -1,7 +1,6 @@
 from utils.util import get_data, plot_data
 import machine_learning.knn as knn
 import pandas as pd
-import matplotlib.pyplot as plt
 
 def compute_momentum_ratio(prices, window):
     momentum = (prices/prices.shift(periods = -window)) - 1

@@ -1,12 +1,6 @@
-from utils.util import get_data, plot_data
-import machine_learning.knn as knn
+from utils.util import get_data
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from keras.models import Sequential
-from keras.layers import LSTM, Dense
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.metrics import mean_squared_error
 
 def compute_momentum_ratio(prices, window):
     #first window elements >> NA

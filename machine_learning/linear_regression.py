@@ -1,6 +1,4 @@
-from utils.util import get_data, plot_data
-import os
-import pandas as pd
+from utils.util import get_data
 import numpy as np
 import scipy.optimize as spo
 import matplotlib.pyplot as plt
