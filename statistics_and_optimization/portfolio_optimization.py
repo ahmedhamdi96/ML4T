@@ -69,7 +69,7 @@ def main():
     
     plot_data(df_comparsion, "Portfolio Optimization", "Date", "Price")
 
-'''to ensure running the tester function only when this file is run not imported
+'''to ensure running the tester function only when this file is run, not imported
 '''
 if __name__ == "__main__":
     main()

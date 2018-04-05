@@ -32,7 +32,7 @@ def main():
     df["Upper Bollinger Band"], df["Lower Bollinger Band"] = get_bollinger_bands(rolling_mean, rolling_std)
     plot_data(df, stock_symbol+" Bollinger Bands", "Date", "Price")
 
-'''to ensure running the tester function only when this file is run not imported
+'''to ensure running the tester function only when this file is run, not imported
 '''
 if __name__ == "__main__":
     main()

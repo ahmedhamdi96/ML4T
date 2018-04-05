@@ -1,18 +1,35 @@
+''' this file shows an implementation of linear regression to
+predict stock prices one trading week in advance. SciPy's
+minimize function is used to optimize the fitted linear line 
+coefficients
+'''
 from utils.util import get_data
 import numpy as np
 import scipy.optimize as spo
 import matplotlib.pyplot as plt
 from machine_learning.dataset_preprocessing import get_dataset_dataframe
 
+'''computes and returns the root mean squared error
+
+*x : a dynamic variable: (value, array, ...)
+*y : a dynamic variable: (value, array, ...)
+'''
 def calculate_rmse(x, y):
     #squared error
     se = (x-y) ** 2
     #mean squared error
     mse = np.mean(se)
-    #root squared error
+    #root mean squared error
     rmse = mse ** 0.5
     return rmse
 
+'''given the fitted line coefficients and the dataset, this
+function computes the rmse between the actual values and 
+the predicted values of the linear regression
+
+*coefficients : fitted line coefficients array
+*data         : dataset containing the features and the output
+'''
 def error_fun(coefficients, data):
     price = coefficients[0]*data[:, 0]
     moment = coefficients[1]*data[:, 1]
@@ -24,6 +41,13 @@ def error_fun(coefficients, data):
     rmse = calculate_rmse(predicted_values, actual_values)
     return rmse
 
+'''given the data to be passed to the error fcn, this function 
+computes an initial guess of the coefficients and uses SciPy's
+minimize fcn and the error fcn to find the optimal coefficients
+
+*data    : fitted line coefficients array
+*err_fun : error function to be minimized by SciPy's minimizor
+'''
 def minimize_err_fun(data, err_fun):
     price = np.mean(data[:, 0])
     moment = np.mean(data[:, 1])
@@ -34,12 +58,26 @@ def minimize_err_fun(data, err_fun):
     result = spo.minimize(error_fun, coefficients_guess, args=(data, ), method="SLSQP", options= {'disp' : True})
     return result.x
 
+'''a normalization fcn
+
+*values : values to be normalized
+*mean   : mean of the values
+*std    : standard deviation of the values
+'''
 def normalize(values, mean, std):
     return (values - mean) / std
 
-def denormalize(normalized_values, mean, std):
+'''an inverse-normalization fcn
+
+*values : normalized values
+*mean   : mean of the normalized values
+*std    : standard deviation of the normalized values
+'''
+def inverse_normalize(normalized_values, mean, std):
     return (normalized_values * std) + mean
 
+'''a tester function
+'''
 def main():
     #getting the preprocessed dataset dataframe
     dataset_df = get_dataset_dataframe()
@@ -83,5 +121,7 @@ def main():
     ax.grid(True)
     plt.show()
 
+'''to ensure running the tester function only when this file is run, not imported
+'''
 if __name__ == "__main__":
     main()

@@ -97,7 +97,7 @@ def main():
     df_comparsion = pd.concat([daily_portfolio_value_normalized, df_SPY_normalized], keys=["Portfolio", "SPY"], axis=1)
     plot_data(df_comparsion, "Portfolio 2017 Normalized Price", "Date", "Price")
 
-'''to ensure running the tester function only when this file is run not imported
+'''to ensure running the tester function only when this file is run, not imported
 '''
 if __name__ == "__main__":
     main()

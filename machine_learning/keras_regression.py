@@ -1,3 +1,6 @@
+''' this file uses a keras feed-forward-NN to predict stock prices
+one trading week in advance
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 from keras.models import Sequential
@@ -6,6 +9,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 from machine_learning.dataset_preprocessing import get_dataset_dataframe
 
+'''a tester function
+'''
 def main():
     #getting the preprocessed dataset dataframe
     dataset_df = get_dataset_dataframe()

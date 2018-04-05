@@ -1,3 +1,6 @@
+''' this file uses a keras LSTM RNN to predict stock prices
+one trading week in advance
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 from keras.models import Sequential
@@ -6,31 +9,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 from machine_learning.dataset_preprocessing import get_dataset_dataframe
 
-def compute_momentum_ratio(prices, window):
-    #first window elements >> NA
-    momentum_ratio = (prices/prices.shift(periods = window)) - 1
-    return momentum_ratio
-
-def compute_sma_ratio(prices, window):
-    #first window-1 elements >> NA
-    sma_ratio = (prices / prices.rolling(window = window).mean()) - 1
-    return sma_ratio
-
-def compute_bollinger_bands_ratio(prices, window):
-    #first window-1 elements >> NA
-    bb_ratio = prices - prices.rolling(window = window).mean()
-    bb_ratio = bb_ratio / (2 * prices.rolling(window = window).std())
-    return bb_ratio
-
-def compute_daily_return_volatility(prices, window):
-    #first window-1 elements >> NA
-    daily_return = (prices/prices.shift(periods= 1)) - 1
-    volatility = daily_return.rolling(window=window).std()
-    return volatility    
-
-def normalize(prices):
-    return prices - prices.mean()/prices.std()
-
+'''a tester function
+'''
 def main():
     #getting the preprocessed dataset dataframe
     dataset_df = get_dataset_dataframe()
@@ -100,5 +80,7 @@ def main():
     
     plt.show()
 
+'''to ensure running the tester function only when this file is run, not imported
+'''
 if __name__ == "__main__":
     main()
