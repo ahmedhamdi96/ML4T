@@ -6,8 +6,8 @@
 
 This is the experimentation section of the thesis. 
 * **Thesis Research Questions:**
-  * (1) Can machine learning be used to predict future stock prices?
-  * (2) Can machine learning be used to generate profitable trading decisions?
+  * *Can machine learning be used to predict future stock prices?*
+  * *Can machine learning be used to generate profitable trading decisions?*
 
 ## Algorithms Evaluation (so far)
 *Algorithm: (RMSE, Correlation)*
