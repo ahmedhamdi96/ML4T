@@ -1,6 +1,5 @@
 ''' this file contains an implementation of kNN regression
 '''
-
 import numpy as np
 
 '''kNN wrapper class
