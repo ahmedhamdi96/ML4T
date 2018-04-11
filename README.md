@@ -17,10 +17,10 @@ This is the experimentation section of the thesis.
 python -m machine_learning.linear_regression
 ```
 ![Linear Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/lin_reg.png)
-* <strong> kNN Regression: (3.938, 0.941)</strong>
+* <strong> kNN Regression: (2.142, 0.905)</strong>
 
 ```sh
-python -m machine_learning.prices_predictor
+python -m machine_learning.knn_regression
 ```
 ![kNN Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/knn.png)
 * <strong> Keras Regression: (3.360, 0.947)</strong>
