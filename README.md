@@ -46,3 +46,4 @@ This project uses the following software and Python libraries:
 * [TensorFlow](https://www.tensorflow.org)
 * [Keras](https://keras.io/)
 * [scikit-learn](http://scikit-learn.org/stable/)
+* [TA-Lib](https://mrjbq7.github.io/ta-lib/doc_index.html)
