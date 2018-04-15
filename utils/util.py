@@ -56,17 +56,12 @@ dates as the index and the chosen columns
 *end_date   : end date of the dataframe's date index   
 *columns    : columns to include in the dataframe                     
 '''
-def get_stock_data(symbol, start_date, end_date, include_SPY=True, columns=["Date", "Adj Close"]):
+def get_stock_data(symbol, start_date, end_date, columns=["Date", "Adj Close"]):
 
-    dates_index = pd.date_range(start=start_date, end=end_date)
-    df = pd.DataFrame(index = dates_index)
-
-    df_temp = pd.read_csv(symbol_to_path(symbol), index_col="Date",
-                          parse_dates=True, usecols=columns,
-                          na_values="nan")
-    df = df.join(df_temp, how="inner")
-
-    return df
+    df = pd.read_csv(symbol_to_path(symbol), index_col="Date",
+                     parse_dates=True, usecols=columns,
+                     na_values="nan")
+    return df[start_date:end_date]
 
 '''this function plots a given dataframe
 

@@ -36,6 +36,13 @@ python -m machine_learning.rnn_lstm
 ```
 ![Keras RNN LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/lstm.png)
 
+* <strong> Optimized LSTM: Outsample Normalized Dataset RMSE: 0.027</strong>
+
+```sh
+python -m machine_learning.optimized_lstm
+```
+![Optimized LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_lstm.png)
+
 ## Software and Libraries
 This project uses the following software and Python libraries:
 
