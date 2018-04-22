@@ -53,14 +53,14 @@ def ffnn_dataset_reshape(dataset, future_gap, split):
 def build_model(features, neurons, drop_out, decay=0.0):
     model = Sequential()
     
-    model.add(Dense(neurons[0], input_dim=features, activation='relu', kernel_initializer='normal'))
+    model.add(Dense(neurons[0], input_dim=features, activation='relu', kernel_initializer='uniform'))
     model.add(Dropout(drop_out))
         
-    model.add(Dense(neurons[1], activation='relu', kernel_initializer='normal'))
+    model.add(Dense(neurons[1], activation='relu', kernel_initializer='uniform'))
     model.add(Dropout(drop_out))
         
-    model.add(Dense(neurons[2], kernel_initializer="uniform", activation='relu'))        
-    model.add(Dense(neurons[3], kernel_initializer="uniform", activation='linear'))
+    model.add(Dense(neurons[2], activation='relu', kernel_initializer="uniform"))        
+    model.add(Dense(neurons[3], activation='linear', kernel_initializer="uniform"))
 
     adam = Adam(decay=decay)
     model.compile(loss='mse',optimizer=adam)
