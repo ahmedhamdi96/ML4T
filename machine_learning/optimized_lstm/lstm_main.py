@@ -1,4 +1,4 @@
-from machine_learning.flagship import lstm
+from machine_learning.optimized_lstm import lstm
 from keras.callbacks import EarlyStopping
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt

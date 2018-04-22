@@ -1,4 +1,4 @@
-from machine_learning.flagship import lstm
+from machine_learning.optimized_lstm import lstm
 from keras.callbacks import EarlyStopping
 
 def evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dropout,
@@ -10,7 +10,7 @@ def evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dr
     features = X_train.shape[2]
     model = lstm.build_model(time_steps, features, neurons, dropout, decay)
     early_stopping_callback = EarlyStopping(monitor='val_loss', min_delta=0, 
-                                            patience=20, verbose=verbose, mode='auto')
+                                            patience=50, verbose=verbose, mode='auto')
     callbacks =  [early_stopping_callback]
     lstm.model_fit(model, X_train, Y_train, batch_size, epochs, validation_split, verbose, callbacks)
     train_mse, test_mse = lstm.evaluate_model(model, X_train, Y_train, X_test, Y_test, verbose)
@@ -19,7 +19,8 @@ def evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dr
 def optimal_dropout(stock, start_date, end_date, future_gap, time_steps, split, neurons,
                     batch_size, epochs, validation_split, verbose, dropout_list):
     dropout_result = {}
-    for dropout in dropout_list:    
+    for dropout in dropout_list:
+        print("\n> testing droput: (%.1f)..." %(dropout))    
         _, testScore = evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dropout,
                                      neurons, batch_size, epochs, validation_split, verbose)
         dropout_result[dropout] = testScore
@@ -28,7 +29,8 @@ def optimal_dropout(stock, start_date, end_date, future_gap, time_steps, split, 
 def optimal_epochs(stock, start_date, end_date, future_gap, time_steps, split, dropout,
                     neurons, batch_size, validation_split, verbose, epochs_list):
     epochs_result = {}
-    for epochs in epochs_list:    
+    for epochs in epochs_list: 
+        print("\n> testing epochs: (%d)..." %(epochs))    
         _, testScore = evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dropout,
                                      neurons, batch_size, epochs, validation_split, verbose)
         epochs_result[epochs] = testScore
@@ -42,6 +44,7 @@ def optimal_neurons(stock, start_date, end_date, future_gap, time_steps, split, 
         for dense_neuron in neurons_list2:
             neurons.append(dense_neuron)
             neurons.append(1)
+            print("\n> testing neurons: (%s)..." %(str(neurons))) 
             _, testScore = evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dropout,
                                         neurons, batch_size, epochs, validation_split, verbose)
             neurons_result[str(neurons)] = testScore
@@ -52,6 +55,7 @@ def optimal_decay(stock, start_date, end_date, future_gap, time_steps, split, dr
                   neurons, batch_size, epochs, validation_split, verbose, decay_list):
     decay_result = {}
     for decay in decay_list:
+        print("\n> testing decay: (%.1f)..." %(decay))
         _, testScore = evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dropout,
                                     neurons, batch_size, epochs, validation_split, verbose, decay)
         decay_result[decay] = testScore
@@ -61,6 +65,7 @@ def optimal_time_steps(stock, start_date, end_date, future_gap, split, dropout, 
                        epochs, validation_split, verbose, decay, time_steps_list):
     timesteps_result = {}
     for time_steps in time_steps_list:
+        print("\n> testing time steps: (%d)..." %(time_steps))
         _, testScore = evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dropout,
                                     neurons, batch_size, epochs, validation_split, verbose, decay)
         timesteps_result[time_steps] = testScore
@@ -70,6 +75,7 @@ def optimal_batch_size(stock, start_date, end_date, future_gap, time_steps, spli
                        epochs, validation_split, verbose, decay, batch_size_list):
     batch_size_result = {}
     for batch_size in batch_size_list:
+        print("\n> testing batch size: (%d)..." %(batch_size))
         _, testScore = evaluate_lstm(stock, start_date, end_date, future_gap, time_steps, split, dropout,
                                     neurons, batch_size, epochs, validation_split, verbose, decay)
         batch_size_result[batch_size] = testScore
