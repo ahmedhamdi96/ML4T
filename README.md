@@ -10,38 +10,10 @@ This is the experimentation section of the thesis.
   * *Can machine learning be used to generate profitable trading decisions?*
 
 ## Algorithms Evaluation (so far)
-*Algorithm: (RMSE, Correlation)*
-* <strong> Linear Regression: (3.328, 0.948)</strong>
+*Time Series Forecast Evaluation*
 
-```sh
-python -m machine_learning.linear_regression
-```
-![Linear Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/lin_reg.png)
-* <strong> kNN Regression: (2.142, 0.905)</strong>
-
-```sh
-python -m machine_learning.knn_regression
-```
-![kNN Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/knn.png)
-* <strong> Keras Regression: (3.360, 0.947)</strong>
-
-```sh
-python -m machine_learning.keras_regression
-```
-![Keras Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/keras_reg.png)
-* <strong> Keras RNN LSTM: (3.405, 0.949)</strong>
-
-```sh
-python -m machine_learning.rnn_lstm
-```
-![Keras RNN LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/lstm.png)
-
-* <strong> Optimized LSTM: Outsample Normalized Dataset RMSE: 0.027</strong>
-
-```sh
-python -m machine_learning.optimized_lstm
-```
-![Optimized LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_lstm.png)
+* [Original](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/original_evaluation.md)
+* [New](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/new_evaluation.md)
 
 ## Software and Libraries
 This project uses the following software and Python libraries:
