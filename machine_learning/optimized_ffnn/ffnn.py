@@ -3,7 +3,6 @@ import machine_learning.dataset_preprocessing as dpp
 import numpy as np
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout
-from keras.layers.recurrent import LSTM
 from keras.optimizers import Adam
 from sklearn.preprocessing import MinMaxScaler
 

@@ -1,6 +1,5 @@
 from utils.util import get_stock_data
 import machine_learning.dataset_preprocessing as dpp
-import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
 def bulid_TIs_dataset(stock_symbol, start_date, end_date, window, normalize=True):
