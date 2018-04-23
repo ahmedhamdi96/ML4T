@@ -78,14 +78,15 @@ python -m machine_learning.optimized_lstm.hyperparam_tune_main
 | Batch Size     | 4096          |
 | Epochs         | 200           |
 
-.left[![LSTM Hyperparam Tune 1](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm1.png)]
-.right[![LSTM Hyperparam Tune 2](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm2.png)]
+![LSTM Hyperparam Tune 1](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm1.png)
+![LSTM Hyperparam Tune 2](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm2.png)
 
 * <strong> FFNN </strong>
 ```sh
 python -m machine_learning.optimized_ffnn.ffnn_hyperparam_tune_main
 ```
 *Time Elapsed: x hours*
+
 | Hyperparameter | Optimal Value |
 | :------------: | :-----------: |
 | Dropout        | x             |
