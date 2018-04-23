@@ -72,8 +72,8 @@ def main(internal_eval=False):
     ax1.set_xlabel('Epoch #')
     ax1.set_ylabel('Loss')
     ax1.legend(loc='best')
-    ax1.grid(True)'''
-
+    ax1.grid(True)
+    '''
     ax2.plot(range(len(predictions_inv_scaled)), predictions_inv_scaled, label='Prediction')
     ax2.plot(range(len(Y_test_inv_scaled)), Y_test_inv_scaled, label='Actual')
     ax2.set_xlabel('Trading Day')
@@ -84,6 +84,7 @@ def main(internal_eval=False):
     plt.show()
 
 main()
+
 
 #to be stored temporarily
 '''#evaluating the model on the *inverse-normalized dataset*

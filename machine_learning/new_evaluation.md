@@ -32,7 +32,7 @@ python -m machine_learning.optimized_ffnn.ffnn_main
 | Future Gap | Loss (RMSE) | Accuracy (R^2) |
 | :--------: | :---------: | :------------: |
 | 1 day      | x           | y              |
-| 1 week     | x           | y              |
+| 1 week     | 0.013       | y              |
 | 1 month    | x           | y              |
 
 ![Optimized FFNN](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_ffnn.png)

@@ -15,9 +15,9 @@ python -m machine_learning.knn_regression
 
 * <strong> Keras Regression: (3.360, 0.947)</strong>
 ```sh
-python -m machine_learning.keras_regression
+python -m machine_learning.keras_ffnn
 ```
-![Keras Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/keras_reg.png)
+![Keras Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/ffnn_reg.png)
 
 * <strong> Keras RNN LSTM: (3.405, 0.949)</strong>
 ```sh
