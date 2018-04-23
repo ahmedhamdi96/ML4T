@@ -9,21 +9,21 @@ start_time = time.time()
 stock = '^GSPC'
 start_date = '1950-01-01'
 end_date = '2017-12-31'
-window = 1
-future_gap = 1
+window = 5
+future_gap = 5
 split = 0.8
 dropout = None
-neurons = [128, 128, 32, 1]
-batch_size = 512 
-epochs = 50
+neurons = [64, 64, 32, 1]
+batch_size = 4026 
+epochs = 1
 validation_split = 0.1
 verbose = 1
 
 #optimal hyperparameters txt file
 print("\n> finding the optimal hyperparameters...")
 file = open("machine_learning/optimized_ffnn/ffnn_optimal_hyperparameters.txt", "wb") #ab+ to read and append to file
-_, (ax1, ax2, ax3) = plt.subplots(3, 1)
-_, (ax4, ax5) = plt.subplots(2, 1)
+fig1, (ax1, ax2, ax3) = plt.subplots(3, 1)
+fig2, (ax4, ax5) = plt.subplots(2, 1)
 
 #finding the optimal dropout
 print("\n> finding the optimal dropout...")
@@ -50,7 +50,7 @@ ax1.grid(True)
 
 #finding the optimal neurons
 print("\n> finding the optimal neurons...")
-neuronlist1 = [32, 64, 128, 256]
+neuronlist1 = [64, 128, 256]
 neuronlist2 = [16, 32, 64]
 neurons_result = hpt.optimal_neurons(stock, start_date, end_date, window, future_gap, split, dropout, 
                                      batch_size, epochs, validation_split, verbose, neuronlist1, neuronlist2)
@@ -71,8 +71,8 @@ neurons = [int(neuron_str) for neuron_str in neurons]
 items = neurons_result.items()
 x, y = zip(*items)
 ax2.bar(range(len(items)), y, align='center')
-plt.xticks(range(len(items)), x)
-plt.xticks(rotation=90)
+plt.sca(ax2)
+plt.xticks(range(len(items)), x, rotation=25)
 ax2.set_xlabel('Neurons')
 ax2.set_ylabel('MSE')
 ax2.grid(True)
@@ -161,4 +161,6 @@ print("Epochs:", optimal_epochs)
 print("Time Elapsed (s):", time)
 
 file.close()
+fig1.tight_layout()
+fig2.tight_layout()
 plt.show()

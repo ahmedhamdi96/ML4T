@@ -22,8 +22,8 @@ verbose = 1
 #optimal hyperparameters txt file
 print("\n> finding the optimal hyperparameters...")
 file = open("machine_learning/optimized_lstm/optimal_hyperparameters.txt", "wb") #ab+ to read and append to file
-_, (ax1, ax2, ax3) = plt.subplots(3, 1)
-_, (ax4, ax5, ax6) = plt.subplots(3, 1)
+fig1, (ax1, ax2, ax3) = plt.subplots(3, 1)
+fig2, (ax4, ax5, ax6) = plt.subplots(3, 1)
 
 #finding the optimal dropout
 print("\n> finding the optimal dropout...")
@@ -50,7 +50,7 @@ ax1.grid(True)
 
 #finding the optimal neurons
 print("\n> finding the optimal neurons...")
-neuronlist1 = [32, 64, 128, 256]
+neuronlist1 = [64, 128, 256]
 neuronlist2 = [16, 32, 64]
 neurons_result = hpt.optimal_neurons(stock, start_date, end_date, future_gap, time_steps, split, dropout, 
                                      batch_size, epochs, validation_split, verbose, neuronlist1, neuronlist2)
@@ -71,8 +71,8 @@ neurons = [int(neuron_str) for neuron_str in neurons]
 items = neurons_result.items()
 x, y = zip(*items)
 ax2.bar(range(len(items)), y, align='center')
-plt.xticks(range(len(items)), x)
-plt.xticks(rotation=90)
+plt.sca(ax2)
+plt.xticks(range(len(items)), x, rotation=25)
 ax2.set_xlabel('Neurons')
 ax2.set_ylabel('MSE')
 ax2.grid(True)
@@ -185,4 +185,6 @@ print("Epochs:", optimal_epochs)
 print("Time Elapsed (s):", time)
 
 file.close()
+fig1.tight_layout()
+fig2.tight_layout()
 plt.show()

@@ -41,10 +41,11 @@ def ffnn_dataset_reshape(dataset, future_gap, split):
     Y = Y[future_gap:]
 
     print("Applying training, testing split...")
-    X_train = X[:split]
-    X_test = X[split:]
-    Y_train = Y[:split]
-    Y_test = Y[split:]
+    split_index = int(split*X.shape[0])
+    X_train = X[:split_index]
+    X_test = X[split_index:]
+    Y_train = Y[:split_index]
+    Y_test = Y[split_index:]
     print("(X_train, Y_train, X_test, Y_test) Shapes:")
     print(X_train.shape, Y_train.shape, X_test.shape, Y_test.shape)
     return X_train, Y_train, X_test, Y_test

@@ -7,7 +7,7 @@ def evaluate_ffnn(stock, start_date, end_date, window, future_gap, split, dropou
     dataframe, _ = ffnn.bulid_TIs_dataset(stock, start_date, end_date, window)
     dataset = dataframe.values
     X_train, Y_train, X_test, Y_test = ffnn.ffnn_dataset_reshape(dataset, future_gap, split)
-    features = X_train.shape[2]
+    features = X_train.shape[1]
     model = ffnn.build_model(features, neurons, dropout, decay)
     early_stopping_callback = EarlyStopping(monitor='val_loss', min_delta=0, 
                                             patience=50, verbose=verbose, mode='auto')
