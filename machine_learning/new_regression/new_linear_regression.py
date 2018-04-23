@@ -32,17 +32,13 @@ b_band = fitted_line_coefficients[3]*X_test[:, 3]
 constant = fitted_line_coefficients[4]
 predictions = price+moment+sma+b_band+constant
 
-#getting the first trading year of the predictions
-predictions = predictions[:252]
-Y_test = Y_test[:252]
-
-#evaluation
+#evaluating the model on the normalized dataset
 rmse = lin_reg.calculate_rmse(predictions, Y_test)
 print('Normalized Test RMSE: %.3f' %(rmse))
 correlation = np.corrcoef(predictions, Y_test)
 print("Normalized Correlation: %.3f"%(correlation[0, 1]))
 
-#evaluating the model on the Inverse-Normalized dataset
+#evaluating the model on the inverse-normalized dataset
 predictions = predictions.reshape((predictions.shape[0], 1))
 Y_test = Y_test.reshape((Y_test.shape[0], 1))
 
