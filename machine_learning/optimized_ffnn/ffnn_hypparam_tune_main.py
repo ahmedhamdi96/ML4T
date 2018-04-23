@@ -148,11 +148,11 @@ ax5.grid(True)
 
 #end time
 end_time = time.time()
-time = start_time - end_time
+time = end_time - start_time
 file.write(bytes("time elapsed: %.3fs." %(time), 'UTF-8'))
 
 #closing the file and showing the plot
-print("Optimal Hyperparameters")
+print("\nOptimal Hyperparameters")
 print("Dropout:", optimal_dropout)
 print("Neurons:", optimal_neurons)
 print("Decay:", optimal_decay)

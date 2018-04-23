@@ -1,0 +1,1 @@
+dropout: 0.3, neurons: [256, 256, 16, 1], decay: 0.1, time_steps: 5, batch_size: 4096, epochs: 200, time elapsed: 95400.293s.

@@ -39,7 +39,7 @@ python -m machine_learning.optimized_ffnn.ffnn_main
 
 * <strong> New kNN </strong>
 ```sh
-python -m machine_learning.new_regression.new_kNN_regression
+python -m machine_learning.new_regression.new_knn_regression
 ```
 | Future Gap | Loss (RMSE) | Accuracy (R^2) |
 | :--------: | :---------: | :------------: |
@@ -85,15 +85,15 @@ python -m machine_learning.optimized_lstm.hyperparam_tune_main
 ```sh
 python -m machine_learning.optimized_ffnn.ffnn_hyperparam_tune_main
 ```
-*Time Elapsed: x hours*
+*Time Elapsed: 5.3 minutes*
 
 | Hyperparameter | Optimal Value |
 | :------------: | :-----------: |
-| Dropout        | x             |
-| Neurons        | x             |
-| Decay          | x             |
-| Batch Size     | x             |
-| Epochs         | x             |
+| Dropout        | 0.8           |
+| Neurons        | [256, 256, 64, 1] |
+| Decay          | 0.1           |
+| Batch Size     | 128           |
+| Epochs         | 200           |
 
 ![FFNN Hyperparam Tune 1](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_ffnn1.png)
 ![FFNN Hyperparam Tune 2](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_ffnn2.png)
