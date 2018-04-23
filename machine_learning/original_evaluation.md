@@ -21,6 +21,6 @@ python -m machine_learning.keras_ffnn
 
 * <strong> Keras RNN LSTM: (3.405, 0.949)</strong>
 ```sh
-python -m machine_learning.rnn_lstm
+python -m machine_learning.keras_lstm
 ```
 ![Keras RNN LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/lstm.png)
