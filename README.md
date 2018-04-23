@@ -9,7 +9,7 @@ This is the experimentation section of the thesis.
   * *Can machine learning be used to predict future stock prices?*
   * *Can machine learning be used to generate profitable trading decisions?*
 
-## Algorithms Evaluation (so far)
+## Algorithms Evaluation
 *Time Series Forecast Evaluation*
 
 * [Original](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/original_evaluation.md)
