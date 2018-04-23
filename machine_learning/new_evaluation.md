@@ -68,6 +68,7 @@ python -m machine_learning.new_regression.new_linear_regression
 python -m machine_learning.optimized_lstm.hyperparam_tune_main
 ```
 *Time Elapsed: 26.5 hours*
+
 | Hyperparameter | Optimal Value |
 | :------------: | :-----------: |
 | Dropout        | 0.3           |
@@ -77,8 +78,8 @@ python -m machine_learning.optimized_lstm.hyperparam_tune_main
 | Batch Size     | 4096          |
 | Epochs         | 200           |
 
-![LSTM Hyperparam Tune 1](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm1.png)
-![LSTM Hyperparam Tune 2](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm2.png)
+.left[![LSTM Hyperparam Tune 1](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm1.png)]
+.right[![LSTM Hyperparam Tune 2](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm2.png)]
 
 * <strong> FFNN </strong>
 ```sh
