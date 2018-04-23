@@ -19,6 +19,7 @@ split = 0.8 #80% of the dataset
 X_train, Y_train, X_test, Y_test = ds.dataset_reshape(dataset, future_gap, split)
 
 #training
+Y_train = Y_train.reshape((Y_train.shape[0], 1))
 training_set = np.concatenate((X_train, Y_train), axis=1)
 fitted_line_coefficients = lin_reg.minimize_err_fun(training_set, lin_reg.error_fun)
 print("Line Coefficients:", fitted_line_coefficients)
@@ -29,20 +30,37 @@ moment = fitted_line_coefficients[1]*X_test[:, 1]
 sma = fitted_line_coefficients[2]*X_test[:, 2]
 b_band = fitted_line_coefficients[3]*X_test[:, 3]
 constant = fitted_line_coefficients[4]
-predicted_values = price+moment+sma+b_band+constant
+predictions = price+moment+sma+b_band+constant
+
+#getting the first trading year of the predictions
+predictions = predictions[:252]
+Y_test = Y_test[:252]
 
 #evaluation
-rmse = lin_reg.calculate_rmse(predicted_values, Y_test)
-print('RMSE: %.3f' %(rmse))
-correlation = np.corrcoef(predicted_values, Y_test)
-print("Correlation: %.3f"%(correlation[0, 1]))
+rmse = lin_reg.calculate_rmse(predictions, Y_test)
+print('Normalized Test RMSE: %.3f' %(rmse))
+correlation = np.corrcoef(predictions, Y_test)
+print("Normalized Correlation: %.3f"%(correlation[0, 1]))
 
-#plots
+#evaluating the model on the Inverse-Normalized dataset
+predictions = predictions.reshape((predictions.shape[0], 1))
+Y_test = Y_test.reshape((Y_test.shape[0], 1))
+
+predictions_inv_scaled = scaler.inverse_transform(predictions)
+Y_test_inv_scaled = scaler.inverse_transform(Y_test)
+
+rmse = lin_reg.calculate_rmse(predictions_inv_scaled, Y_test_inv_scaled)
+print('Inverse-Normalized Outsample RMSE: %.3f' %(rmse))
+correlation = np.corrcoef(predictions_inv_scaled, Y_test_inv_scaled)
+print("Inverse-Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
+
+#plotting
 _, ax = plt.subplots()
-ax.plot(range(len(predicted_values)), predicted_values, label='Prediction')
-ax.plot(range(len(Y_test)), Y_test, label='Actual')
+ax.plot(range(len(predictions_inv_scaled)), predictions_inv_scaled, label='Prediction')
+ax.plot(range(len(Y_test_inv_scaled)), Y_test_inv_scaled, label='Actual')
 ax.set_xlabel('Trading Day')
 ax.set_ylabel('Price')
 ax.legend(loc='best')
 ax.grid(True)
+
 plt.show()

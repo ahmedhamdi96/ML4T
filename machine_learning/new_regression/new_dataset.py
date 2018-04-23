@@ -21,8 +21,8 @@ def bulid_TIs_dataset(stock_symbol, start_date, end_date, window, normalize=True
         df['bolinger_band'] = scaler.fit_transform(df['bolinger_band'].values.reshape(-1,1))
         df['actual_price'] = scaler.fit_transform(df['actual_price'].values.reshape(-1,1))
 
-    print(df.head())
-    print(df.tail())
+    print(df.head(10))
+    print(df.tail(10))
     return df, scaler
 
 def dataset_reshape(dataset, future_gap, split):
@@ -35,12 +35,19 @@ def dataset_reshape(dataset, future_gap, split):
     print("Applying Future Gap...")
     X = X[:-future_gap]
     Y = Y[future_gap:]
+    print("X Shape:", X.shape)
+    print("Y Shape:", Y.shape)
 
     print("Applying training, testing split...")
-    X_train = X[:split]
-    X_test = X[split:]
-    Y_train = Y[:split]
-    Y_test = Y[split:]
+    split_index = int(split*X.shape[0])
+    X_train = X[:split_index]
+    X_test = X[split_index:]
+    Y_train = Y[:split_index]
+    Y_test = Y[split_index:]
     print("(X_train, Y_train, X_test, Y_test) Shapes:")
     print(X_train.shape, Y_train.shape, X_test.shape, Y_test.shape)
+    print(X_train[:5])
+    print(Y_train[:5])
+    print(X_test[-5:])
+    print(Y_test[-5:])
     return X_train, Y_train, X_test, Y_test

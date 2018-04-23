@@ -31,9 +31,13 @@ class knn:
 
     *features : test dataset features
     '''
-    def query(self, features):
-        dataset_price_normed = (self.__dataset[:, 0]/self.__dataset[0, 0]) - 1
-        features_price_normed = (features[:, 0]/features[0, 0]) - 1
+    def query(self, features, normalize=True, addDiff=True):
+        dataset_price_normed = self.__dataset[:, 0]
+        features_price_normed = features[:, 0]
+
+        if normalize:
+            dataset_price_normed = (self.__dataset[:, 0]/self.__dataset[0, 0]) - 1
+            features_price_normed = (features[:, 0]/features[0, 0]) - 1
         
         cumm_difference = np.zeros(features.shape[0])
         predicted_price = np.zeros(features.shape[0])
@@ -53,5 +57,6 @@ class knn:
             k_mean = np.mean(difference_sorted[:self.__k, 1])
             predicted_price[i] = k_mean
 
-        predicted_price += features[0, 0] - self.__dataset[0, 0]
+        if addDiff:
+            predicted_price += (features[0, 0] - self.__dataset[0, 0])
         return predicted_price

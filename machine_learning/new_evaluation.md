@@ -3,10 +3,10 @@
 |  Variable  | Value       | Description |
 | :--------- | :---------- | :---------- |
 | stock      | ^GSPC       | S&P 500 |
-| start_date | 1950-01-01  | stock historical data start date |
-| end_date   | 2017-12-31  | stock historical data end date |
-| window     | 1           | window for computing rolling statistics |
-| future_gap | 1           | how far (trading days) into the future is the prediction |
+| start date | 1950-01-01  | stock historical data start date |
+| end date   | 2017-12-31  | stock historical data end date |
+| window     | 5           | window for computing rolling statistics |
+| future gap | 5           | how far (trading days) into the future is the prediction |
 | split      | 0.8         | training-testing dataset split |
 
 ### Evaluation metrics

@@ -20,24 +20,40 @@ split = 0.8 #80% of the dataset
 X_train, Y_train, X_test, Y_test = ds.dataset_reshape(dataset, future_gap, split)
 
 #kNN model
-model = knn.knn(3)
+model = knn.knn(5)
 
 #fitting the training data
 model.train(X_train, Y_train)
 
 #predictions
-predictions = model.query(X_test)
+predictions = model.query(X_test, normalize=False, addDiff=False)
+
+#getting the first trading year of the predictions
+predictions = predictions[:252]
+Y_test = Y_test[:252]
 
 #evaluation
-rmse = (calculate_rmse(predictions, Y_test) ** 0.5)
-print('Test RMSE: %.3f' %(rmse))
+rmse = calculate_rmse(predictions, Y_test)
+print('Normalized Test RMSE: %.3f' %(rmse))
 correlation = np.corrcoef(predictions, Y_test)
-print("Correlation: %.3f"%(correlation[0, 1]))
+print("Normalized Correlation: %.3f"%(correlation[0, 1]))
+
+#evaluating the model on the Inverse-Normalized dataset
+predictions = predictions.reshape((predictions.shape[0], 1))
+Y_test = Y_test.reshape((Y_test.shape[0], 1))
+
+predictions_inv_scaled = scaler.inverse_transform(predictions)
+Y_test_inv_scaled = scaler.inverse_transform(Y_test)
+
+rmse = calculate_rmse(predictions_inv_scaled, Y_test_inv_scaled)
+print('Inverse-Normalized Outsample RMSE: %.3f' %(rmse))
+correlation = np.corrcoef(predictions_inv_scaled, Y_test_inv_scaled)
+print("Inverse-Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
 
 #plotting
 _, ax = plt.subplots()
-ax.plot(range(len(predictions)), predictions, label='Prediction')
-ax.plot(range(len(Y_test)), Y_test, label='Actual')
+ax.plot(range(len(predictions_inv_scaled)), predictions_inv_scaled, label='Prediction')
+ax.plot(range(len(Y_test_inv_scaled)), Y_test_inv_scaled, label='Actual')
 ax.set_xlabel('Trading Day')
 ax.set_ylabel('Price')
 ax.legend(loc='best')
