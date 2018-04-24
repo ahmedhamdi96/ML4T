@@ -36,6 +36,8 @@ predictions = price+moment+sma+b_band+constant
 #evaluating the model on the normalized dataset
 rmse = lin_reg.calculate_rmse(predictions, Y_test)
 print('\nNormalized Outsample RMSE: %.3f' %(rmse))
+mape = ds.compute_mape(Y_test, predictions)
+print('Normalized Outsample MAPE: %.3f' %(mape))
 correlation = np.corrcoef(predictions, Y_test)
 print("Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
 r2 = r2_score(predictions, Y_test)
@@ -50,6 +52,8 @@ Y_test_inv_scaled = scaler.inverse_transform(Y_test)
 
 rmse = lin_reg.calculate_rmse(predictions_inv_scaled, Y_test_inv_scaled)
 print('\nInverse-Normalized Outsample RMSE: %.3f' %(rmse))
+mape = ds.compute_mape(Y_test_inv_scaled, predictions_inv_scaled)
+print('Inverse-Normalized Outsample MAPE: %.3f' %(mape))
 correlation = np.corrcoef(predictions_inv_scaled.T, Y_test_inv_scaled.T)
 print("Inverse-Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
 r2 = r2_score(predictions_inv_scaled, Y_test_inv_scaled)

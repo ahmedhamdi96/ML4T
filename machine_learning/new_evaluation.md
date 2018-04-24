@@ -10,18 +10,24 @@
 | split      | 0.8         | training-testing dataset split |
 
 ### Evaluation metrics
-    1. Loss     : RMSE of the normalized dataset, values range between [0, 1]
-    2. Accuracy : R^2 (Coefficient of determination)
+*metrics are applied on the normalized dataset, where the values are in the range [0, 1]*
+    1. Loss
+        *RMSE : accumulation of all errors, RMSE value represents dollar value
+        *MAPE : accumulation of all error percentages, MAPE value represents percentage value
+
+    2. Accuracy
+        *Correlation : linear relationship between predictions and actual values, range: [-1, 1]
+        *r-squared   : how close predictions are to actual prices, range: [0, 1]
 
 * <strong> Optimized LSTM </strong>
 ```sh
 python -m machine_learning.optimized_lstm.lstm_main
 ```
-| Future Gap | Loss (RMSE) | Accuracy (R^2) |
-| :--------: | :---------: | :------------: |
-| 1 day      | x           | y              |
-| 1 week     | 0.073       | y              |
-| 1 month    | x           | y              |
+| Future Gap | RMSE | MAPE | Corr | R^2 |
+| :--------: | :--: | :--: | :--: | :-: |
+| 1 day      | x    | y    | i    | j   |
+| 1 week     | 0.073| y    | i    | j   |
+| 1 month    | x    | y    | i    | j   |
 
 ![Optimized LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_lstm.png)
 
@@ -29,11 +35,11 @@ python -m machine_learning.optimized_lstm.lstm_main
 ```sh
 python -m machine_learning.optimized_ffnn.ffnn_main
 ```
-| Future Gap | Loss (RMSE) | Accuracy (R^2) |
-| :--------: | :---------: | :------------: |
-| 1 day      | x           | y              |
-| 1 week     | 0.013       | y              |
-| 1 month    | x           | y              |
+| Future Gap | RMSE | MAPE | Corr | R^2 |
+| :--------: | :--: | :--: | :--: | :-: |
+| 1 day      | x    | y    | i    | j   |
+| 1 week     | 0.013| 1.786| 0.998| 0.994|
+| 1 month    | x    | y    | i    | j   |
 
 ![Optimized FFNN](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_ffnn.png)
 
@@ -41,11 +47,11 @@ python -m machine_learning.optimized_ffnn.ffnn_main
 ```sh
 python -m machine_learning.new_regression.new_knn_regression
 ```
-| Future Gap | Loss (RMSE) | Accuracy (R^2) |
-| :--------: | :---------: | :------------: |
-| 1 day      | x           | y              |
-| 1 week     | 0.146       | y              |
-| 1 month    | x           | y              |
+| Future Gap | RMSE | MAPE | Corr | R^2 |
+| :--------: | :--: | :--: | :--: | :-: |
+| 1 day      | x    | y    | i    | j   |
+| 1 week     | 0.146| 11.82| 0.796| -4.306|
+| 1 month    | x    | y    | i    | j   |
 
 ![New kNN](https://github.com/ahmedhamdi96/ML4T/blob/master/results/new_knn.png)
 
@@ -53,11 +59,11 @@ python -m machine_learning.new_regression.new_knn_regression
 ```sh
 python -m machine_learning.new_regression.new_linear_regression
 ```
-| Future Gap | Loss (RMSE) | Accuracy (R^2) |
-| :--------: | :---------: | :------------: |
-| 1 day      | x           | y              |
-| 1 week     | 0.011       | y              |
-| 1 month    | x           | y              |
+| Future Gap | RMSE | MAPE | Corr | R^2 |
+| :--------: | :--: | :--: | :--: | :-: |
+| 1 day      | x    | y    | i    | j   |
+| 1 week     | 0.011| 1.597| 0.998| 0.995|
+| 1 month    | x    | y    | i    | j   |
 
 ![New Linear Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/new_lin_reg.png)
 

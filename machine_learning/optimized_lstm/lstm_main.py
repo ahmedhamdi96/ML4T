@@ -1,4 +1,5 @@
 from machine_learning.optimized_lstm import lstm
+from machine_learning.new_regression.new_dataset import compute_mape
 from keras.callbacks import EarlyStopping
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
@@ -53,6 +54,8 @@ def main(internal_eval=False):
     #evaluating the model on the normalized dataset
     rmse = (mean_squared_error(predictions, Y_test) ** 0.5)
     print('\nNormalized Test RMSE: %.3f' %(rmse))
+    mape = compute_mape(Y_test, predictions)
+    print('Normalized Outsample MAPE: %.3f' %(mape))
     correlation = np.corrcoef(predictions.T, Y_test.T)
     print("Normalized Correlation: %.3f"%(correlation[0, 1]))
     r2 = r2_score(predictions, Y_test)
@@ -64,6 +67,8 @@ def main(internal_eval=False):
 
     rmse = (mean_squared_error(predictions_inv_scaled, Y_test_inv_scaled) ** 0.5)
     print('\nInverse-Normalized Outsample RMSE: %.3f' %(rmse))
+    mape = compute_mape(Y_test_inv_scaled, predictions_inv_scaled)
+    print('Inverse-Normalized Outsample MAPE: %.3f' %(mape))
     correlation = np.corrcoef(predictions_inv_scaled.T, Y_test_inv_scaled.T)
     print("Inverse-Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
     r2 = r2_score(predictions_inv_scaled, Y_test_inv_scaled)

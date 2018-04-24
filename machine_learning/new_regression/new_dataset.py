@@ -1,6 +1,10 @@
 from utils.util import get_stock_data
 import machine_learning.dataset_preprocessing as dpp
 from sklearn.preprocessing import MinMaxScaler
+import numpy as np
+
+def compute_mape(y_true, y_pred):
+    return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
 
 def bulid_TIs_dataset(stock_symbol, start_date, end_date, window, normalize=True):
     cols = ["Date", "Adj Close"]
