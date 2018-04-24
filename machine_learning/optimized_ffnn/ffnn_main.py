@@ -3,6 +3,7 @@ from keras.callbacks import EarlyStopping
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.metrics import r2_score
 
 def main(internal_eval=False):
     #building the dataset
@@ -50,18 +51,22 @@ def main(internal_eval=False):
 
     #evaluating the model on the normalized dataset
     rmse = (mean_squared_error(predictions, Y_test) ** 0.5)
-    print('Normalized Test RMSE: %.3f' %(rmse))
-    correlation = np.corrcoef(predictions, Y_test)
+    print('\nNormalized Test RMSE: %.3f' %(rmse))
+    correlation = np.corrcoef(predictions.T, Y_test.T)
     print("Normalized Correlation: %.3f"%(correlation[0, 1]))
+    r2 = r2_score(predictions, Y_test)
+    print("Normalized Outsample r^2: %.3f"%(r2))
 
     #evaluating the model on the inverse-normalized dataset
     predictions_inv_scaled = scaler.inverse_transform(predictions)
     Y_test_inv_scaled = scaler.inverse_transform(Y_test)
 
     rmse = (mean_squared_error(predictions_inv_scaled, Y_test_inv_scaled) ** 0.5)
-    print('Inverse-Normalized Outsample RMSE: %.3f' %(rmse))
-    correlation = np.corrcoef(predictions_inv_scaled, Y_test_inv_scaled)
+    print('\nInverse-Normalized Outsample RMSE: %.3f' %(rmse))
+    correlation = np.corrcoef(predictions_inv_scaled.T, Y_test_inv_scaled.T)
     print("Inverse-Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
+    r2 = r2_score(predictions_inv_scaled, Y_test_inv_scaled)
+    print("Inverse-Normalized Outsample r^2: %.3f"%(r2))
 
     #plotting the results
     print("\n> plotting the results...")

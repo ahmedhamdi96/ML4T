@@ -2,6 +2,7 @@ from machine_learning.new_regression import new_dataset as ds
 import machine_learning.linear_regression as lin_reg
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.metrics import r2_score
 
 #building the dataset
 print("> building the dataset...")
@@ -34,9 +35,11 @@ predictions = price+moment+sma+b_band+constant
 
 #evaluating the model on the normalized dataset
 rmse = lin_reg.calculate_rmse(predictions, Y_test)
-print('Normalized Test RMSE: %.3f' %(rmse))
+print('\nNormalized Outsample RMSE: %.3f' %(rmse))
 correlation = np.corrcoef(predictions, Y_test)
-print("Normalized Correlation: %.3f"%(correlation[0, 1]))
+print("Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
+r2 = r2_score(predictions, Y_test)
+print("Normalized Outsample r^2: %.3f"%(r2))
 
 #evaluating the model on the inverse-normalized dataset
 predictions = predictions.reshape((predictions.shape[0], 1))
@@ -46,9 +49,11 @@ predictions_inv_scaled = scaler.inverse_transform(predictions)
 Y_test_inv_scaled = scaler.inverse_transform(Y_test)
 
 rmse = lin_reg.calculate_rmse(predictions_inv_scaled, Y_test_inv_scaled)
-print('Inverse-Normalized Outsample RMSE: %.3f' %(rmse))
-correlation = np.corrcoef(predictions_inv_scaled, Y_test_inv_scaled)
+print('\nInverse-Normalized Outsample RMSE: %.3f' %(rmse))
+correlation = np.corrcoef(predictions_inv_scaled.T, Y_test_inv_scaled.T)
 print("Inverse-Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
+r2 = r2_score(predictions_inv_scaled, Y_test_inv_scaled)
+print("Inverse-Normalized Outsample r^2: %.3f"%(r2))
 
 #plotting
 _, ax = plt.subplots()
