@@ -26,8 +26,8 @@ def main(internal_eval=False):
     #building the LSTM model
     print("\n> building the LSTM model...")
     features = X_train.shape[2]
-    neurons = [256, 256, 16, 1]
-    drop_out = 0.3
+    neurons = [256, 256, 32, 1]
+    drop_out = 0.2
     verbose = 1
     model = lstm.build_model(time_steps, features, neurons, drop_out)
 
@@ -35,8 +35,8 @@ def main(internal_eval=False):
     print("\n> fitting the training data...")
     early_stopping_callback = EarlyStopping(monitor='val_loss', min_delta=0, 
                                             patience=50, verbose=verbose, mode='auto')
-    batch_size = 4096
-    epochs = 200
+    batch_size = 2048
+    epochs = 300
     validation_split = 0.1
     history = lstm.model_fit(model, X_train, Y_train, batch_size, epochs, validation_split,
                              verbose, [early_stopping_callback])

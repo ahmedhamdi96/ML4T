@@ -26,7 +26,7 @@ python -m machine_learning.optimized_lstm.lstm_main
 | Future Gap | RMSE | MAPE | Corr | R^2 |
 | :--------: | :--: | :--: | :--: | :-: |
 | 1 day      | x    | y    | i    | j   |
-| 1 week     | 0.073| y    | i    | j   |
+| 1 week     | 0.056| 5.075| 0.092| 0.788|
 | 1 month    | x    | y    | i    | j   |
 
 ![Optimized LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_lstm.png)
@@ -73,16 +73,16 @@ python -m machine_learning.new_regression.new_linear_regression
 ```sh
 python -m machine_learning.optimized_lstm.hyperparam_tune_main
 ```
-*Time Elapsed: 26.5 hours*
+*Time Elapsed: 25 hours*
 
 | Hyperparameter | Optimal Value |
 | :------------: | :-----------: |
-| Dropout        | 0.3           |
-| Neurons        | [256, 256, 16, 1] |
+| Dropout        | 0.2           |
+| Neurons        | [256, 256, 32, 1] |
 | Decay          | 0.1           |
 | Time Steps     | 5             |
-| Batch Size     | 4096          |
-| Epochs         | 200           |
+| Batch Size     | 2048          |
+| Epochs         | 300           |
 
 ![LSTM Hyperparam Tune 1](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm1.png)
 ![LSTM Hyperparam Tune 2](https://github.com/ahmedhamdi96/ML4T/blob/master/results/hyperparam_tune_lstm2.png)
