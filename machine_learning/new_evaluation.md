@@ -11,6 +11,7 @@
 
 ### Evaluation metrics
 *metrics are applied on the normalized dataset, where the values are in the range [0, 1]*
+
     1. Loss
         *RMSE : accumulation of all errors, RMSE value represents dollar value
         *MAPE : accumulation of all error percentages, MAPE value represents percentage value
