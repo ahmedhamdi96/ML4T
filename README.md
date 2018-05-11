@@ -24,7 +24,9 @@ This is the experimentation section of the thesis.
     * The model is trained on the period starting from a company's first public trading day till the day 
     before the required testing period.
 
-* **[Facebook](https://github.com/ahmedhamdi96/ML4T/blob/master/testing/results/facebook.md)**
+### During Times of Change
+
+* **[Facebook](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/facebook.md)**
 
   *Facebook started trading publicly on 18/05/2012.*
 
@@ -32,7 +34,7 @@ This is the experimentation section of the thesis.
 
     Amid the scandal and Mark Zuckerburg's public hearing, Facebook's stock price fell.
 
-* **[Apple](https://github.com/ahmedhamdi96/ML4T/blob/master/testing/results/apple.md)**
+* **[Apple](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/apple.md)**
 
   *Apple started trading publicly on 12/12/1980.*
 
@@ -44,7 +46,7 @@ This is the experimentation section of the thesis.
     of leaders and products were in question.
 
 
-* **[Tesla](https://github.com/ahmedhamdi96/ML4T/blob/master/testing/results/tesla.md)**
+* **[Tesla](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/tesla.md)**
 
   *Tesla started trading publicly on 29/06/2010.*
 
@@ -57,7 +59,7 @@ This is the experimentation section of the thesis.
     and accelerating competition in the mobility business were some of the reasons analysts
     lowered Tesla's stock price target.
 
-* **[Amazon](https://github.com/ahmedhamdi96/ML4T/blob/master/testing/results/amazon.md)**
+* **[Amazon](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/amazon.md)**
 
   *Amazon started trading publicly on 15/05/1997.*
 
@@ -68,6 +70,8 @@ This is the experimentation section of the thesis.
 
     Amazon's Q3 reports showed an increase in profits, an acceleration in revenue growth, an increase 
     in AWS' operating income, and the success of Alexa-enabled devices.
+
+### **[During Normal Stock Market Movement](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/nsmm.md)
 
 ## Software and Libraries
 This project uses the following software and Python libraries:
