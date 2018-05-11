@@ -56,7 +56,7 @@ dates as the index and the chosen columns
 *end_date   : end date of the dataframe's date index   
 *columns    : columns to include in the dataframe                     
 '''
-def get_stock_data(symbol, start_date, end_date, columns=["Date", "Adj Close"]):
+def get_stock_data(symbol, start_date=None, end_date=None, columns=["Date", "Adj Close"]):
 
     df = pd.read_csv(symbol_to_path(symbol), index_col="Date",
                      parse_dates=True, usecols=columns,
@@ -71,13 +71,14 @@ def get_stock_data(symbol, start_date, end_date, columns=["Date", "Adj Close"]):
 *ylabel         : the vertical axis label
 *leg_loc        : legend location
 '''
-def plot_data(dataframe, plot_title, xlabel, ylabel, leg_loc="best"):
+def plot_data(dataframe, plot_title, xlabel, ylabel, leg_loc="best", show_plot='True'):
     ax = dataframe.plot(title=plot_title)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.legend(loc=leg_loc)
     ax.grid(True)
-    plt.show()
+    if show_plot:
+        plt.show()
 
 '''a tester function
 '''

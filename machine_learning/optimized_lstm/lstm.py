@@ -1,4 +1,4 @@
-from utils.util import get_stock_data
+from utils.util import get_stock_data, plot_data
 import machine_learning.dataset_preprocessing as dpp
 import numpy as np
 from keras.models import Sequential
@@ -10,6 +10,9 @@ from sklearn.preprocessing import MinMaxScaler
 def bulid_dataset(stock_symbol, start_date, end_date, normalize=True):
     cols = ["Date", "Open", "Low", "High", "Adj Close"]
     df = get_stock_data(stock_symbol, start_date, end_date, cols)
+    df.replace([np.inf, -np.inf], np.nan, inplace=True)
+    df.fillna(method='ffill', inplace=True)
+    df.fillna(method='bfill', inplace=True)
     scaler = None
 
     if normalize:        
@@ -32,6 +35,9 @@ def bulid_TIs_dataset(stock_symbol, start_date, end_date, window, normalize=True
     df['bolinger_band'] = dpp.compute_bollinger_bands_ratio(df['price'], window)
     df['actual_price'] = df['price']
     df = df[window:]
+    df.replace([np.inf, -np.inf], np.nan, inplace=True)
+    df.fillna(method='ffill', inplace=True)
+    df.fillna(method='bfill', inplace=True)
     scaler = None
 
     if normalize:        
@@ -65,14 +71,18 @@ def lstm_dataset_reshape(dataset, time_steps, future_gap, split):
     print("Applying Future Gap...")
     print("Sampled X Shape:", X_sampled.shape)
     print("Sampled Y Shape:", Y_sampled.shape)
-    split_index = int(split*X_sampled.shape[0])
-    X_train = X_sampled[:split_index]
-    X_test = X_sampled[split_index:]
-    Y_train = Y_sampled[:split_index]
-    Y_test = Y_sampled[split_index:]
-    print("(X_train, Y_train, X_test, Y_test) Shapes:")
-    print(X_train.shape, Y_train.shape, X_test.shape, Y_test.shape)
-    return X_train, Y_train, X_test, Y_test
+
+    if split != None:
+        split_index = int(split*X_sampled.shape[0])
+        X_train = X_sampled[:split_index]
+        X_test = X_sampled[split_index:]
+        Y_train = Y_sampled[:split_index]
+        Y_test = Y_sampled[split_index:]
+        print("(X_train, Y_train, X_test, Y_test) Shapes:")
+        print(X_train.shape, Y_train.shape, X_test.shape, Y_test.shape)
+        return X_train, Y_train, X_test, Y_test
+
+    return X_sampled, Y_sampled
 
 def build_model(time_steps, features, neurons, drop_out, decay=0.0):
     model = Sequential()
@@ -113,3 +123,42 @@ def evaluate_model(model, X_train, Y_train, X_test, Y_test, verbose):
     print('Outsample Testing: %.5f MSE (%.3f RMSE)' % (test_mse, (test_mse ** 0.5)))
 
     return train_mse, test_mse
+
+def test_lstm(stock_symbol, start_date, end_date, window, future_gap, time_steps,
+              neurons, drop_out, batch_size, epochs, validation_split, verbose, callbacks, show_plot_flg):
+    #building the dataset
+    print("> building the dataset...")
+    df_train, _ = bulid_TIs_dataset(stock_symbol, None, start_date, window)
+    df_test, scaler = bulid_TIs_dataset(stock_symbol, start_date, end_date, window)
+    #reshaping the dataset for LSTM
+    print("\n> reshaping the dataset for LSTM...")
+    ds_train = df_train.values
+    ds_test = df_test.values
+    X_train, Y_train = lstm_dataset_reshape(ds_train, time_steps, future_gap, None)
+    X_test, Y_test = lstm_dataset_reshape(ds_test, time_steps, future_gap, None)
+    #building the LSTM model
+    print("\n> building the LSTM model...")
+    features = X_train.shape[2]
+    model = build_model(time_steps, features, neurons, drop_out)
+    #fitting the training data
+    print("\n> fitting the training data...")
+    model_fit(model, X_train, Y_train, batch_size, epochs, validation_split, verbose, callbacks)
+    #predictions
+    print("\n> testing the model for predictions...")
+    predictions = model.predict(X_test)
+    #inverse-scaling
+    print("\n> inverse-scaling the scaled values...")
+    predictions = predictions.reshape((predictions.shape[0], 1))
+    predictions_inv_scaled = scaler.inverse_transform(predictions)
+    Y_test = Y_test.reshape((Y_test.shape[0], 1))
+    Y_test_inv_scaled = scaler.inverse_transform(Y_test)
+    #grouping the actual prices and predictions
+    print("\n> grouping the actual prices and predictions...")    
+    df_test.drop(columns=['price', 'momentum', 'sma', 'bolinger_band'], inplace=True)
+    df_test.rename(columns={"actual_price" : 'Actual'}, inplace=True)
+    df_test = df_test.iloc[time_steps+future_gap-1:]
+    df_test['Actual'] = Y_test_inv_scaled
+    df_test['Prediction'] = predictions_inv_scaled
+    #ploting the forecast vs the actual
+    print("\n> plotting the results...")
+    plot_data(df_test, stock_symbol+" Price Forecast", "Date", "Price", show_plot=show_plot_flg)
