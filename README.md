@@ -18,11 +18,9 @@ This is the experimentation section of the thesis.
 ## Testing
 *Predicting Stock prices for a portfolio of 4 companies during different interesting time periods*
 
-    * Considering that the LSTM model is regarded to be the flagship machine 
-    learning model in this project, it is the one used in this testing section.
+    * Considering that the LSTM model is regarded to be the flagship machine learning model in this project, it is the one used in this testing section.
 
-    * The model is trained on the period starting from the company's first public
-    trading day till the day before the required testing period.
+    * The model is trained on the period starting from a company's first public trading day till the day before the required testing period.
 
 * **[Facebook](https://github.com/ahmedhamdi96/ML4T/blob/master/testing/results/facebook.md)**
 
@@ -51,7 +49,7 @@ This is the experimentation section of the thesis.
   Tesla's stock is volatile as a result of many factors including: failing to meet plans 
   and expensive acquisitions and investments.
 
-  * Analyst downgrades, [September/2013 - November/2013]
+  * Analysts downgrades, [September/2013 - November/2013]
 
     Lowered volume expectations for Model X and Model 3, a lower valuation for Tesla Energy, 
     and accelerating competition in the mobility business were some of the reasons analysts
