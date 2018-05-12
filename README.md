@@ -24,6 +24,11 @@ This is the experimentation section of the thesis.
     * The model is trained on the period starting from a company's first public trading day till the day 
     before the required testing period.
 
+### Stable Stock vs Volatile Stock Forecast
+
+This test is used to demonstrate the effect of the volatility of the stock on the accuracy of the model's forecast. 
+See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/stable_vs_volatile.md).
+
 ### During Times of Change
 
 * **[Facebook](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/facebook.md)**
@@ -70,11 +75,6 @@ This is the experimentation section of the thesis.
 
     Amazon's Q3 reports showed an increase in profits, an acceleration in revenue growth, an increase 
     in AWS' operating income, and the success of Alexa-enabled devices.
-
-### Stable Stock vs Volatile Stock Forecast
-
-This test is used to demonstrate the effect of the volatility of the stock on the accuracy of the model's forecast. 
-See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/stable_vs_volatile.md).
 
 ## Software and Libraries
 This project uses the following software and Python libraries:
