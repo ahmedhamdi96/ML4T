@@ -76,6 +76,9 @@ See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_lear
     Amazon's Q3 reports showed an increase in profits, an acceleration in revenue growth, an increase 
     in AWS' operating income, and the success of Alexa-enabled devices.
 
+## Analysis
+*Under Development, coming soon, hang on and hold tight!*
+
 ## Software and Libraries
 This project uses the following software and Python libraries:
 
