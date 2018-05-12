@@ -71,11 +71,10 @@ This is the experimentation section of the thesis.
     Amazon's Q3 reports showed an increase in profits, an acceleration in revenue growth, an increase 
     in AWS' operating income, and the success of Alexa-enabled devices.
 
-### During Normal Stock Market Movement
+### Stable Stock vs Volatile Stock Forecast
 
-This test is applied on a time period where no major external events were affecting the companies' stock price movements.
-It is performed to illustrate how well does the model forecast prices of day-to-day stocks that are manily influenced by
-stock market movement. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/nsmm.md).
+This test is used to demonstrate the effect of the volatility of the stock on the accuracy of the model's forecast. 
+See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/stable_vs_volatile.md).
 
 ## Software and Libraries
 This project uses the following software and Python libraries:
