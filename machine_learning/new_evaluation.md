@@ -44,18 +44,6 @@ python -m machine_learning.optimized_ffnn.ffnn_main
 
 ![Optimized FFNN](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_ffnn.png)
 
-* <strong> New kNN </strong>
-```sh
-python -m machine_learning.new_regression.new_knn_regression
-```
-| Future Gap | RMSE | MAPE | Corr | R^2 |
-| :--------: | :--: | :--: | :--: | :-: |
-| 1 day      | x    | y    | i    | j   |
-| 1 week     | 0.146| 11.82| 0.796| -4.306|
-| 1 month    | x    | y    | i    | j   |
-
-![New kNN](https://github.com/ahmedhamdi96/ML4T/blob/master/results/new_knn.png)
-
 * <strong> New Linear Regression </strong>
 ```sh
 python -m machine_learning.new_regression.new_linear_regression
