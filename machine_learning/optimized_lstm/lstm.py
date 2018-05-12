@@ -1,4 +1,5 @@
 from utils.util import get_stock_data, plot_data
+from machine_learning.testing.lag_metric import compute_lag_metric
 import machine_learning.dataset_preprocessing as dpp
 import numpy as np
 from keras.models import Sequential
@@ -161,4 +162,5 @@ def test_lstm(stock_symbol, start_date, end_date, window, future_gap, time_steps
     df_test['Prediction'] = predictions_inv_scaled
     #ploting the forecast vs the actual
     print("\n> plotting the results...")
+    compute_lag_metric(df_test['Actual'], df_test['Prediction'], 5, stock_symbol)
     plot_data(df_test, stock_symbol+" Price Forecast", "Date", "Price", show_plot=show_plot_flg)

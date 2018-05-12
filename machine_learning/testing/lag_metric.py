@@ -1,7 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
 
-def compute_lag_metric(actual, prediction, lookup):
+def compute_lag_metric(actual, prediction, lookup, symbol):
     diff_list = [None] * lookup
     lag_list = [None] * (len(actual)-lookup+1)
 
@@ -18,6 +18,7 @@ def compute_lag_metric(actual, prediction, lookup):
     _, ax = plt.subplots()
     ax.bar(range(len(max_diff_count)), max_diff_count, align='center')
     plt.sca(ax)
+    plt.title(symbol+" Lag Test")
     ax.set_xlabel('Day Lag')
     ax.set_ylabel('Frequency')
     ax.grid(True)
