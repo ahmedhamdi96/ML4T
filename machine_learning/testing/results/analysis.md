@@ -11,7 +11,7 @@ This forecast is used to predict the tesla stock for a duration between 01/01/20
         and movement of the actual price. Starting from 07/05/2013, the stock moves up with a steep trajectory, and 
         during that sudden change is when the model performs poorly. Upon researching news about Tesla on May/2013, 
         it was discovered that the company reported its first quarterly profit and its flagship at that time, the 
-        Model S, received the best review of any car in Consumer Reports magazine's history, see the report ![here](http://money.cnn.com/2013/05/10/investing/tesla-stock). These postive news caused an unexpected and sudden 
+        Model S, received the best review of any car in Consumer Reports magazine's history, see the report [here](http://money.cnn.com/2013/05/10/investing/tesla-stock). These postive news caused an unexpected and sudden 
         surge in Tesla's stock price. A hypothesis that can be proposed from that is that the model is capable of 
         predicting the price and the fluctuations in price caused by the stock market movement, but when external 
         events that impact the stock price suddenly, the model naturally does not pick up on these events.
