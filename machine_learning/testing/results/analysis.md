@@ -26,7 +26,7 @@ This forecast is used to predict the tesla stock for a duration between 01/01/20
 
 > This plot follows the same timeline of the forecast on the x-axis, against the lag on the y-axis. This plot 
 > supports the hypothesis, mentioned earlier, the model finds the closest prediction to the actual price early 
-> on during the normal movement phase, and lages at the end pf the timeline during the sudden change phase.
+> on during the normal movement phase, and lags at the end of the timeline during the sudden change phase.
 
 ### Stable (Amazon) Stock vs Volatile(Tesla) Stock Forecast
 
