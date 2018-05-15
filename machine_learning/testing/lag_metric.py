@@ -29,3 +29,5 @@ def compute_lag_metric(actual, prediction, lookup, symbol):
     ax1.set_xlabel('Trading Day')
     ax1.set_ylabel('Lag')
     ax1.grid(True)
+
+    return lag_list

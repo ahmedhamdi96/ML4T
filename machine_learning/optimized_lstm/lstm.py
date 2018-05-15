@@ -2,6 +2,7 @@ from utils.util import get_stock_data, plot_data
 from machine_learning.testing.lag_metric import compute_lag_metric
 import machine_learning.dataset_preprocessing as dpp
 import numpy as np
+import matplotlib.pyplot as plt
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout
 from keras.layers.recurrent import LSTM
@@ -162,5 +163,25 @@ def test_lstm(stock_symbol, start_date, end_date, window, future_gap, time_steps
     df_test['Prediction'] = predictions_inv_scaled
     #ploting the forecast vs the actual
     print("\n> plotting the results...")
-    compute_lag_metric(df_test['Actual'], df_test['Prediction'], 5, stock_symbol)
-    plot_data(df_test, stock_symbol+" Price Forecast", "Date", "Price", show_plot=show_plot_flg)
+    lookup = 5
+    lag_list = compute_lag_metric(df_test['Actual'], df_test['Prediction'], lookup, stock_symbol)
+
+    df_test = df_test[:len(df_test)-lookup+1]
+    plot_data(df_test, stock_symbol+" Price Forecast", "Date", "Price", show_plot=False)
+
+    ax = df_test.plot(title=stock_symbol+" Price Forecast and PAL Overlay")
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Price")
+    ax.legend(loc="best")
+    ax.grid(True)
+    ax.annotate('Normal Movement', xy=('2013-02-15', 40), xytext=('2013-03-05', 50), fontsize=10,
+            arrowprops=dict(facecolor='black', shrink=0.1, headwidth=8))
+    ax.annotate('Sudden Change', xy=('2013-05-10', 55), xytext=('2013-03-05', 70), fontsize=10,
+            arrowprops=dict(facecolor='black', shrink=0.1, headwidth=8))
+
+    ax1 = ax.twinx()
+    ax1.scatter(df_test.index, lag_list, c='g')
+    ax1.set_ylabel("PAL")
+
+    if show_plot_flg:
+        plt.show()

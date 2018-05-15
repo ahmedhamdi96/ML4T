@@ -28,6 +28,8 @@ This forecast is used to predict the tesla stock for a duration between 01/01/20
 > supports the hypothesis, mentioned earlier, the model finds the closest prediction to the actual price early 
 > on during the normal movement phase, and lags at the end of the timeline during the sudden change phase.
 
+![SvN w/ PAL](https://github.com/ahmedhamdi96/ML4T/blob/master/results/sudden_vs_normal_pal.png)
+
 ### Stable (Amazon) Stock vs Volatile(Tesla) Stock Forecast
 
 ![Stable](https://github.com/ahmedhamdi96/ML4T/blob/master/results/stable.png)
