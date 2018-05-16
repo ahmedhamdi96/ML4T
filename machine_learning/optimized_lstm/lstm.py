@@ -29,13 +29,16 @@ def bulid_dataset(stock_symbol, start_date, end_date, normalize=True):
     return df, scaler
 
 def bulid_TIs_dataset(stock_symbol, start_date, end_date, window, normalize=True):
-    cols = ["Date", "Adj Close"]
+    cols = ["Date", "Adj Close", "Volume"]
     df = get_stock_data(stock_symbol, start_date, end_date, cols)
     df.rename(columns={"Adj Close" : 'price'}, inplace=True)
     df['momentum'] = dpp.compute_momentum_ratio(df['price'], window)
     df['sma'] = dpp.compute_sma_ratio(df['price'], window)
     df['bolinger_band'] = dpp.compute_bollinger_bands_ratio(df['price'], window)
+    df['volatility'] = dpp.compute_volatility_ratio(df['price'], window)
+    df['vroc'] = dpp.compute_vroc_ratio(df['Volume'], window)
     df['actual_price'] = df['price']
+    df.drop(columns=["Volume"], inplace=True)
     df = df[window:]
     df.replace([np.inf, -np.inf], np.nan, inplace=True)
     df.fillna(method='ffill', inplace=True)
@@ -48,8 +51,10 @@ def bulid_TIs_dataset(stock_symbol, start_date, end_date, window, normalize=True
         df['momentum'] = scaler.fit_transform(df['momentum'].values.reshape(-1,1))
         df['sma'] = scaler.fit_transform(df['sma'].values.reshape(-1,1))
         df['bolinger_band'] = scaler.fit_transform(df['bolinger_band'].values.reshape(-1,1))
+        df['volatility'] = scaler.fit_transform(df['volatility'].values.reshape(-1,1))
+        df['vroc'] = scaler.fit_transform(df['vroc'].values.reshape(-1,1))
         df['actual_price'] = scaler.fit_transform(df['actual_price'].values.reshape(-1,1))
-
+        
     print(df.head())
     print(df.tail())
     return df, scaler
@@ -155,8 +160,10 @@ def test_lstm(stock_symbol, start_date, end_date, window, future_gap, time_steps
     Y_test = Y_test.reshape((Y_test.shape[0], 1))
     Y_test_inv_scaled = scaler.inverse_transform(Y_test)
     #grouping the actual prices and predictions
-    print("\n> grouping the actual prices and predictions...")    
-    df_test.drop(columns=['price', 'momentum', 'sma', 'bolinger_band'], inplace=True)
+    print("\n> grouping the actual prices and predictions...")
+    feature_cols = df_test.columns.tolist()
+    feature_cols.remove("actual_price")
+    df_test.drop(columns=feature_cols, inplace=True)
     df_test.rename(columns={"actual_price" : 'Actual'}, inplace=True)
     df_test = df_test.iloc[time_steps+future_gap-1:]
     df_test['Actual'] = Y_test_inv_scaled
@@ -174,11 +181,11 @@ def test_lstm(stock_symbol, start_date, end_date, window, future_gap, time_steps
     ax.set_ylabel("Price")
     ax.legend(loc="best")
     ax.grid(True)
+    #sudden vs normal plot annotation
     ax.annotate('Normal Movement', xy=('2013-02-15', 40), xytext=('2013-03-05', 50), fontsize=10,
             arrowprops=dict(facecolor='black', shrink=0.1, headwidth=8))
     ax.annotate('Sudden Change', xy=('2013-05-10', 55), xytext=('2013-03-05', 70), fontsize=10,
             arrowprops=dict(facecolor='black', shrink=0.1, headwidth=8))
-
     ax1 = ax.twinx()
     ax1.scatter(df_test.index, lag_list, c='g')
     ax1.set_ylabel("PAL")

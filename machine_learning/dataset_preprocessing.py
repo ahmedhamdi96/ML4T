@@ -17,7 +17,7 @@ import pandas as pd
 #BEGIN
 def compute_momentum_ratio(prices, window):
     #first window elements >> NA
-    momentum_ratio = (prices/prices.shift(periods = window)) - 1
+    momentum_ratio = (prices/prices.shift(periods = 1)) - 1
     return momentum_ratio
 
 def compute_sma_ratio(prices, window):
@@ -31,6 +31,17 @@ def compute_bollinger_bands_ratio(prices, window):
     bb_ratio = prices - prices.rolling(window = window).mean()
     bb_ratio = bb_ratio / (2 * prices.rolling(window = window).std())
     return bb_ratio
+
+def compute_volatility_ratio(prices, window):
+    #first window-1 elements >> NA
+    volatility_ratio = ((prices/prices.shift(periods = 1)) - 1).rolling(window = window).std()
+    return volatility_ratio
+
+def compute_vroc_ratio(volume, window):
+    #Volume Rate of Change
+    #first window-1 elements >> NA
+    vroc_ratio = (volume/volume.shift(periods = window)) - 1
+    return vroc_ratio
 
 def compute_daily_return_volatility(prices, window):
     #first window-1 elements >> NA
