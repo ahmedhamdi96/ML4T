@@ -27,6 +27,7 @@ the domain of stock price prediction.
 The research questions for the bachelor thesis are:
 
 * *Can machine learning be used to predict future stock prices?*
+
 Is it possible to design a machine learning model that is trained  on historical prices of a 
 certain stock, and to be able to query the model for future prices? How reliable will the model
 be? What are the model's constraints, guarantees, and weaknesses?
