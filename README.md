@@ -14,27 +14,26 @@ Regressor, kNN Regressor, FFNN, and RNN LSTM. The prediction models are compared
 and evaluated using different metrics. Several case studies are performed to evaluate the 
 performance of the prediction model. From the case studies, few results were obtained: 
 
-(1) Technical indicators can be used to teach a machine learning model about the nature of 
+1. Technical indicators can be used to teach a machine learning model about the nature of 
 a certain stock in the stock market, the model can then be used to predict future prices. 
-(2) The model is capable of predicting the price and the fluctuations in price caused by the 
+2. The model is capable of predicting the price and the fluctuations in price caused by the 
 stock market movement. 
-(3) The model naturally lags on picking up on external events that impact the stock price suddenly.
+3. The model naturally lags on picking up on external events that impact the stock price suddenly.
 
 The research mainly aims to exploit the capabilities of machine learning in the field of stock trading.
 It also aims to propose backed-up hypothesis and analysis on the capabilities of machine learning in
 the domain of stock price prediction.
 
-* **The research questions for the bachelor thesis are:**
-  * *Can machine learning be used to predict future stock prices?*
+The research questions for the bachelor thesis are:
 
-  Is it possible to design a machine learning model that is trained  on historical prices of a 
-  certain stock, and to be able to query the model for future prices? How reliable will the model
-  be? What are the model's constraints, guarantees, and weaknesses?
+* *Can machine learning be used to predict future stock prices?*
+Is it possible to design a machine learning model that is trained  on historical prices of a 
+certain stock, and to be able to query the model for future prices? How reliable will the model
+be? What are the model's constraints, guarantees, and weaknesses?
+* *How does the performance of different machine learning algorithms vary?*
 
-  * *How does the performance of different machine learning algorithms vary?*
-
-  Which machine learning algorithm does the best job, and how do the different algorithms compare
-  with each other? A grading criteria should be designed to compare and assess the algorithms.
+Which machine learning algorithm does the best job, and how do the different algorithms compare
+with each other? A grading criteria should be designed to compare and assess the algorithms.
 
 This Github repository is the experimentation section of the thesis.
 
