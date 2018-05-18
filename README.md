@@ -2,21 +2,50 @@
 *Machine Learning for Trading*
 
 ## Project Overview
-*GUC Bachelor Thesis Project*
+*GUC 2018 Bachelor Thesis Project*
 
-This is the experimentation section of the thesis. 
-* **Thesis Research Questions:**
+Stock market prediction is an interesting realm to test the capabilities of machine learning
+on. The nature of the stock market is volatile, complicated, and very sensitive to external 
+information, which makes it difficult to predict. Different machine learning models are 
+developed to forecast future stock prices. Technical indicators are computed using historical 
+stock prices to provide the machine learning model with a daily time series of a stock prices 
+indications to learn and develop its prediction engine based on. The models used are: Linear 
+Regressor, kNN Regressor, FFNN, and RNN LSTM. The prediction models are compared 
+and evaluated using different metrics. Several case studies are performed to evaluate the 
+performance of the prediction model. From the case studies, few results were obtained: 
+
+(1) Technical indicators can be used to teach a machine learning model about the nature of 
+a certain stock in the stock market, the model can then be used to predict future prices. 
+(2) The model is capable of predicting the price and the fluctuations in price caused by the 
+stock market movement. 
+(3) The model naturally lags on picking up on external events that impact the stock price suddenly.
+
+The research mainly aims to exploit the capabilities of machine learning in the field of stock trading.
+It also aims to propose backed-up hypothesis and analysis on the capabilities of machine learning in
+the domain of stock price prediction.
+
+* **The research questions for the bachelor thesis are:**
   * *Can machine learning be used to predict future stock prices?*
+
+  Is it possible to design a machine learning model that is trained  on historical prices of a 
+  certain stock, and to be able to query the model for future prices? How reliable will the model
+  be? What are the model's constraints, guarantees, and weaknesses?
+
   * *How does the performance of different machine learning algorithms vary?*
 
+  Which machine learning algorithm does the best job, and how do the different algorithms compare
+  with each other? A grading criteria should be designed to compare and assess the algorithms.
+
+This Github repository is the experimentation section of the thesis.
+
 ## Algorithms Evaluation
-*Time Series Forecast Evaluation*
+*Development Phase*
 
 * [Original](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/original_evaluation.md)
 * [New](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/new_evaluation.md)
 
 ## Testing
-*Predicting Stock prices for a portfolio of 4 companies during different interesting time periods*
+*Testing Phase*
 
     * Considering that the LSTM model is regarded as the flagship machine learning model in this project, 
     it is the one used in this testing section.
@@ -25,11 +54,13 @@ This is the experimentation section of the thesis.
     before the required testing period.
 
 ### Stable Stock vs Volatile Stock Forecast
+*Volatility Test*
 
 This test is used to demonstrate the effect of the volatility of the stock on the accuracy of the model's forecast. 
 See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/stable_vs_volatile.md).
 
 ### During Times of Change
+*Predicting Stock prices for a portfolio of 4 companies during different interesting time periods*
 
 * **[Facebook](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/facebook.md)**
 
@@ -77,12 +108,14 @@ See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_lear
     in AWS' operating income, and the success of Alexa-enabled devices.
 
 ## Analysis
-To analyze the forecast and evaluate how fast does the model predict the closest price to the actual, a lag metric is created.
+*Analysing the tests using a novel metric*
+
+To analyse the forecast and evaluate how fast does the model predict the closest price to the actual, a lag metric is created.
 The **_Prediction-Actual Lag (PAL)_** metric works as follows: 
 The future gap chosen when making the forecast indicates how far into the future should a prediction be, for example if the future gap is set to 1, the forecast is a next-trading-day forecast. The actual prices are traversed and compared with the predictions, each actual price datapoint is compared against a number of the prediction data points, that number is the future gap, so if the future gap is set to 5, then each actual datapoint is compared to the corresponding prediction datapoint and the 4 next to it. See **_PAL_** in action [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/analysis.md).
 
 ## Software and Libraries
-This project uses the following software and Python libraries:
+*This project uses the following software and Python libraries:*
 
 * [NumPy](http://www.numpy.org/)
 * [pandas](http://pandas.pydata.org/)

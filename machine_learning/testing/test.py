@@ -10,9 +10,9 @@ dates_dic = {
     'AMZN': ['2017-08-01', '2018-04-01'],
     }
 
-window = 3
+window = 2
 future_gap = 1
-time_steps = 5
+time_steps = 1
 neurons = [256, 256, 32, 1]
 drop_out = 0.2                                   
 batch_size = 2048

@@ -16,13 +16,13 @@ dates_dic = {
     'TSLA': ['2013-01-01', '2013-06-01'],
     }
 
-window = 3
+window = 2
 future_gap = 1
-time_steps = 5
+time_steps = 1
 neurons = [256, 256, 32, 1]
 drop_out = 0.2                                   
 batch_size = 2048
-epochs = 150
+epochs = 300
 validation_split = 0.1
 verbose = 1
 early_stopping_callback = EarlyStopping(monitor='val_loss', min_delta=0, 
