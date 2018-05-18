@@ -100,8 +100,8 @@ def build_model(time_steps, features, neurons, drop_out, decay=0.0):
     model.add(LSTM(neurons[1], input_shape=(time_steps, features), return_sequences=False))
     model.add(Dropout(drop_out))
         
-    model.add(Dense(neurons[2],kernel_initializer="uniform",activation='relu'))        
-    model.add(Dense(neurons[3],kernel_initializer="uniform",activation='linear'))
+    model.add(Dense(neurons[2], activation='relu'))        
+    model.add(Dense(neurons[3], activation='linear'))
 
     adam = Adam(decay=decay)
     model.compile(loss='mse',optimizer=adam)
