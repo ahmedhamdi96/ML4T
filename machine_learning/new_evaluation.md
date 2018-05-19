@@ -5,8 +5,8 @@
 | stock      | ^GSPC       | S&P 500 |
 | start date | 1950-01-01  | stock historical data start date |
 | end date   | 2017-12-31  | stock historical data end date |
-| window     | 5           | window for computing rolling statistics |
-| future gap | 5           | how far (trading days) into the future is the prediction |
+| window     | 2           | window for computing rolling statistics |
+| future gap | 1, 5, 20    | how far (trading days) into the future is the prediction |
 | split      | 0.8         | training-testing dataset split |
 
 ### Evaluation metrics
@@ -25,10 +25,12 @@
 python -m machine_learning.optimized_lstm.lstm_main
 ```
 | Future Gap | RMSE | MAPE | Corr | R^2 |
-| :--------: | :--: | :--: | :--: | :-: |
-| 1 day      | x    | y    | i    | j   |
-| 1 week     | 0.056| 5.075| 0.092| 0.788|
-| 1 month    | x    | y    | i    | j   |
+| :--------: | :--: | :--: | :--: | :--: |
+| 1 day      | 0.007| 1.033| 0.999| 0.998|
+| 1 week     | 0.012| 1.642| 0.998| 0.995|
+| 1 month    | 0.026| 3.708| 0.992| 0.972|
+
+*shown below is a 1 trading day future gap*
 
 ![Optimized LSTM](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_lstm.png)
 
@@ -38,23 +40,13 @@ python -m machine_learning.optimized_ffnn.ffnn_main
 ```
 | Future Gap | RMSE | MAPE | Corr | R^2 |
 | :--------: | :--: | :--: | :--: | :-: |
-| 1 day      | x    | y    | i    | j   |
-| 1 week     | 0.013| 1.786| 0.998| 0.994|
-| 1 month    | x    | y    | i    | j   |
+| 1 day      | 0.009| 1.401| 0.999| 0.997|
+| 1 week     | 0.015| 2.108| 0.998| 0.992|
+| 1 month    | 0.021| 3.014| 0.992| 0.984|
+
+*shown below is a 1 trading day future gap*
 
 ![Optimized FFNN](https://github.com/ahmedhamdi96/ML4T/blob/master/results/optimized_ffnn.png)
-
-* <strong> New Linear Regression </strong>
-```sh
-python -m machine_learning.new_regression.new_linear_regression
-```
-| Future Gap | RMSE | MAPE | Corr | R^2 |
-| :--------: | :--: | :--: | :--: | :-: |
-| 1 day      | x    | y    | i    | j   |
-| 1 week     | 0.011| 1.597| 0.998| 0.995|
-| 1 month    | x    | y    | i    | j   |
-
-![New Linear Regression](https://github.com/ahmedhamdi96/ML4T/blob/master/results/new_lin_reg.png)
 
 ## Hyperparameter Tuning
 

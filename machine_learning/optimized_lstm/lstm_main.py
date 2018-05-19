@@ -12,14 +12,14 @@ def main(internal_eval=False):
     stock_symbol = '^GSPC'
     start_date = '1950-01-01'
     end_date = '2017-12-31'
-    window = 5
+    window = 2
     dataframe, scaler = lstm.bulid_TIs_dataset(stock_symbol, start_date, end_date, window)
 
     #reshaping the dataset for LSTM
     print("\n> reshaping the dataset for LSTM...")
     dataset = dataframe.values
-    time_steps = 5 #1 trading week
-    future_gap = 5 #1 trading day
+    time_steps = 1 #1 trading day
+    future_gap = 1 #1 trading day
     split = 0.8 #80% of the dataset
     X_train, Y_train, X_test, Y_test = lstm.lstm_dataset_reshape(dataset, time_steps, future_gap, split)
 

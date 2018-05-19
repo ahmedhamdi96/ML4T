@@ -12,13 +12,13 @@ def main(internal_eval=False):
     stock_symbol = '^GSPC'
     start_date = '1950-01-01'
     end_date = '2017-12-31'
-    window = 5
-    dataframe, scaler = ffnn.bulid_TIs_dataset(stock_symbol, start_date, end_date, window)
+    window = 2
+    dataframe, scaler = ffnn.bulid_new_TIs_dataset(stock_symbol, start_date, end_date, window)
 
     #reshaping the dataset for FFNN
     print("\n> reshaping the dataset for FFNN...")
     dataset = dataframe.values
-    future_gap = 5 #1 trading week
+    future_gap = 1 #1 trading day
     split = 0.8 #80% of the dataset
     X_train, Y_train, X_test, Y_test = ffnn.ffnn_dataset_reshape(dataset, future_gap, split)
 
@@ -37,7 +37,7 @@ def main(internal_eval=False):
     batch_size = 4096
     epochs = 200
     validation_split = 0.1
-    history = ffnn.model_fit(model, X_train, Y_train, batch_size, epochs, validation_split,
+    _ = ffnn.model_fit(model, X_train, Y_train, batch_size, epochs, validation_split,
                              verbose, [early_stopping_callback])
 
     #internal evaluation
