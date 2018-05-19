@@ -12,13 +12,14 @@ stock prices to provide the machine learning model with a daily time series of a
 indications to learn and develop its prediction engine based on. The models used are: Linear 
 Regressor, kNN Regressor, FFNN, and RNN LSTM. The prediction models are compared 
 and evaluated using different metrics. Several case studies are performed to evaluate the 
-performance of the prediction model. From the case studies, few results were obtained: 
+performance of the prediction model. From the case studies, few results are obtained: 
 
 1. Technical indicators can be used to teach a machine learning model about the nature of 
 a certain stock in the stock market, the model can then be used to predict future prices. 
 2. The model is capable of predicting the price and the fluctuations in price caused by the 
 stock market movement. 
 3. The model naturally lags on picking up on external events that impact the stock price suddenly.
+4. The LSTM RNN outperformed all the other models.
 
 The research mainly aims to exploit the capabilities of machine learning in the field of stock trading.
 It also aims to propose backed-up hypothesis and analysis on the capabilities of machine learning in
