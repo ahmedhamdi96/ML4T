@@ -54,12 +54,6 @@ This Github repository is the experimentation section of the thesis.
     * The model is trained on the period starting from a company's first public trading day till the day 
     before the required testing period.
 
-### Stable Stock vs Volatile Stock Forecast
-*Volatility Test*
-
-This test is used to demonstrate the effect of the volatility of the stock on the accuracy of the model's forecast. 
-See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/stable_vs_volatile.md).
-
 ### During Times of Change
 *Predicting Stock prices for a portfolio of 4 companies during different interesting time periods*
 
@@ -109,10 +103,10 @@ See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_lear
     in AWS' operating income, and the success of Alexa-enabled devices.
 
 ### Window and Time Steps Test
-[Test](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/window_and_ts.md)
+A test to determine the optimal window and time steps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/window_and_ts.md).
 
 ### Evaluation Metrics
-[Test](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/eval.md)
+New metrics to evaluate the performance of the model over different future gaps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/eval.md).
 
 ## Analysis
 *Analysing the tests using a novel metric*
