@@ -8,6 +8,9 @@ from keras.layers.core import Dense, Dropout
 from keras.layers.recurrent import LSTM
 from keras.optimizers import Adam
 from sklearn.preprocessing import MinMaxScaler
+from machine_learning.new_regression.new_dataset import compute_mape
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn.metrics import r2_score
 
 def bulid_dataset(stock_symbol, start_date, end_date, normalize=True):
     cols = ["Date", "Open", "Low", "High", "Adj Close"]
@@ -192,3 +195,71 @@ def test_lstm(stock_symbol, start_date, end_date, window, future_gap, time_steps
 
     if show_plot_flg:
         plt.show()
+
+def final_test_lstm(stock_symbol, start_date, end_date, window, future_gap, time_steps,
+              neurons, drop_out, batch_size, epochs, validation_split, verbose, callbacks):
+    #building the dataset
+    print("> building the dataset...")
+    df_train, _ = bulid_TIs_dataset(stock_symbol, None, start_date, window)
+    df_test, scaler = bulid_TIs_dataset(stock_symbol, start_date, end_date, window)
+    #reshaping the dataset for LSTM
+    print("\n> reshaping the dataset for LSTM...")
+    ds_train = df_train.values
+    ds_test = df_test.values
+    X_train, Y_train = lstm_dataset_reshape(ds_train, time_steps, future_gap, None)
+    X_test, Y_test = lstm_dataset_reshape(ds_test, time_steps, future_gap, None)
+    #building the LSTM model
+    print("\n> building the LSTM model...")
+    features = X_train.shape[2]
+    model = build_model(time_steps, features, neurons, drop_out)
+    #fitting the training data
+    print("\n> fitting the training data...")
+    model_fit(model, X_train, Y_train, batch_size, epochs, validation_split, verbose, callbacks)
+    #predictions
+    print("\n> testing the model for predictions...")
+    predictions = model.predict(X_test)
+    #inverse-scaling
+    print("\n> inverse-scaling the scaled values...")
+    predictions = predictions.reshape((predictions.shape[0], 1))
+    predictions_inv_scaled = scaler.inverse_transform(predictions)
+    Y_test = Y_test.reshape((Y_test.shape[0], 1))
+    Y_test_inv_scaled = scaler.inverse_transform(Y_test)
+    #evaluating the model on the normalized dataset
+    rmse = (mean_squared_error(Y_test, predictions) ** 0.5)
+    print('\nNormalized RMSE: %.3f' %(rmse))
+    nrmse = ((mean_squared_error(Y_test, predictions) ** 0.5))/np.mean(Y_test)
+    print('Normalized NRMSE: %.3f' %(nrmse))
+    mae = mean_absolute_error(Y_test, predictions)
+    print('Normalized MAE: %.3f' %(mae))
+    mape = compute_mape(Y_test, predictions)
+    print('Normalized MAPE: %.3f' %(mape))
+    correlation = np.corrcoef(Y_test.T, predictions.T)
+    print("Normalized Correlation: %.3f"%(correlation[0, 1]))
+    r2 = r2_score(Y_test, predictions)
+    print("Normalized r^2: %.3f"%(r2))
+    normalized_metrics = [rmse, nrmse, mae, mape, correlation[0, 1], r2]
+    #evaluating the model on the inverse-normalized dataset
+    rmse = (mean_squared_error(Y_test_inv_scaled, predictions_inv_scaled) ** 0.5)
+    print('\nInverse-Normalized Outsample RMSE: %.3f' %(rmse))
+    nrmse = ((mean_squared_error(Y_test_inv_scaled, predictions_inv_scaled) ** 0.5))/np.mean(Y_test)
+    print('Normalized NRMSE: %.3f' %(nrmse))
+    mae = mean_absolute_error(Y_test_inv_scaled, predictions_inv_scaled)
+    print('Normalized MAE: %.3f' %(mae))
+    mape = compute_mape(Y_test_inv_scaled, predictions_inv_scaled)
+    print('Inverse-Normalized Outsample MAPE: %.3f' %(mape))
+    correlation = np.corrcoef(Y_test_inv_scaled.T, predictions_inv_scaled.T)
+    print("Inverse-Normalized Outsample Correlation: %.3f"%(correlation[0, 1]))
+    r2 = r2_score(Y_test_inv_scaled, predictions_inv_scaled)
+    print("Inverse-Normalized Outsample r^2: %.3f"%(r2))
+    inv_normalized_metrics = [rmse, nrmse, mae, mape, correlation[0, 1], r2]
+    #grouping the actual prices and predictions
+    print("\n> grouping the actual prices and predictions...")
+    feature_cols = df_test.columns.tolist()
+    feature_cols.remove("actual_price")
+    df_test.drop(columns=feature_cols, inplace=True)
+    df_test.rename(columns={"actual_price" : 'Actual'}, inplace=True)
+    df_test = df_test.iloc[time_steps+future_gap-1:]
+    df_test['Actual'] = Y_test_inv_scaled
+    df_test['Prediction'] = predictions_inv_scaled
+
+    return normalized_metrics, inv_normalized_metrics, df_test

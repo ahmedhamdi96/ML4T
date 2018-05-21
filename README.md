@@ -108,6 +108,12 @@ See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_lear
     Amazon's Q3 reports showed an increase in profits, an acceleration in revenue growth, an increase 
     in AWS' operating income, and the success of Alexa-enabled devices.
 
+### Window and Time Steps Test
+[Test](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/window_and_ts.md)
+
+### Evaluation Metrics
+[Test](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/results/eval.md)
+
 ## Analysis
 *Analysing the tests using a novel metric*
 
