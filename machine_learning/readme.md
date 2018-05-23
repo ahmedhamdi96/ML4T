@@ -1,1 +1,2 @@
-This directory contains projects applying different machine learning algorithms on historical data of different companies to predict stock prices.
+This directory contains projects applying different machine learning algorithms on historical data of different companies to predict stock prices. The development directory is where the models where developed. It includes initial try-outs, improvements, and multiple 
+changes. The final directory includes the finalized versions of the models, the evaluation metrics, and the final experiments.
