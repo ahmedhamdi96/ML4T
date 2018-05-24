@@ -73,3 +73,29 @@ def bulid_TIs_dataset(stock_symbol, start_date, end_date, window, normalize=True
     print(df.head())
     print(df.tail())
     return df, scaler
+
+def dataset_split(dataset, future_gap, split):
+    print("Dataset Shape:", dataset.shape)
+    X = dataset[:, :-1]
+    Y = dataset[:, -1]
+    print("X Shape:", X.shape)
+    print("Y Shape:", Y.shape)
+
+    print("Applying Future Gap...")
+    X = X[:-future_gap]
+    Y = Y[future_gap:]
+    print("X Shape:", X.shape)
+    print("Y Shape:", Y.shape)
+
+    if split != None:
+        print("Applying training, testing split...")
+        split_index = int(split*X.shape[0])
+        X_train = X[:split_index]
+        X_test = X[split_index:]
+        Y_train = Y[:split_index]
+        Y_test = Y[split_index:]
+        print("(X_train, Y_train, X_test, Y_test) Shapes:")
+        print(X_train.shape, Y_train.shape, X_test.shape, Y_test.shape)
+        return X_train, Y_train, X_test, Y_test
+    
+    return X, Y

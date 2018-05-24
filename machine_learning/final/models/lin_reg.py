@@ -106,7 +106,7 @@ def final_test_linreg(stock_symbol, start_date, end_date, window, future_gap):
     b_band = fitted_line_coefficients[3]*X_test[:, 3]
     std = fitted_line_coefficients[4]*X_test[:, 4]
     vroc = fitted_line_coefficients[5]*X_test[:, 5]
-    constant = fitted_line_coefficients[4]
+    constant = fitted_line_coefficients[6]
     predictions = price+moment+sma+b_band+std+vroc+constant
     #inverse-scaling
     print("\n> inverse-scaling the scaled values...")

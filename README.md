@@ -101,17 +101,17 @@ with each other? A grading criteria should be designed to compare and assess the
     in AWS' operating income, and the success of Alexa-enabled devices.
 
 ### Window and Time Steps Test
-A test to determine the optimal window and time steps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/development/results/window_and_ts.md).
+A test to determine the optimal window and time steps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/window_and_ts.md).
 
 ### Evaluation Metrics
-New metrics to evaluate the performance of the model over different future gaps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/development/results/eval.md).
+New metrics to evaluate the performance of the model over different future gaps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/eval.md).
 
 ## Analysis
 *Analysing the tests using a novel metric*
 
 To analyse the forecast and evaluate how fast does the model predict the closest price to the actual, a lag metric is created.
 The **_Prediction-Actual Lag (PAL)_** metric works as follows: 
-The future gap chosen when making the forecast indicates how far into the future should a prediction be, for example if the future gap is set to 1, the forecast is a next-trading-day forecast. The actual prices are traversed and compared with the predictions, each actual price datapoint is compared against a number of the prediction data points, that number is the future gap, so if the future gap is set to 5, then each actual datapoint is compared to the corresponding prediction datapoint and the 4 next to it. See **_PAL_** in action [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/testing/development/results/analysis.md).
+The future gap chosen when making the forecast indicates how far into the future should a prediction be, for example if the future gap is set to 1, the forecast is a next-trading-day forecast. The actual prices are traversed and compared with the predictions, each actual price datapoint is compared against a number of the prediction data points, that number is the future gap, so if the future gap is set to 5, then each actual datapoint is compared to the corresponding prediction datapoint and the 4 next to it. See **_PAL_** in action [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/analysis.md).
 
 ## Software and Libraries
 *This project uses the following software and Python libraries:*

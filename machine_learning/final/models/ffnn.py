@@ -1,33 +1,8 @@
-from machine_learning.final.utils.dataset import bulid_TIs_dataset
+from machine_learning.final.utils.dataset import bulid_TIs_dataset, dataset_split
 from machine_learning.final.evaluation.metrics import evaluate
-import numpy as np
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout
 from keras.optimizers import Adam
-
-def ffnn_dataset_reshape(dataset, future_gap, split):
-    print("Dataset Shape:", dataset.shape)
-    X = dataset[:, :-1]
-    Y = dataset[:, -1]
-    print("X Shape:", X.shape)
-    print("Y Shape:", Y.shape)
-
-    print("Applying Future Gap...")
-    X = X[:-future_gap]
-    Y = Y[future_gap:]
-
-    if split != None:
-        print("Applying training, testing split...")
-        split_index = int(split*X.shape[0])
-        X_train = X[:split_index]
-        X_test = X[split_index:]
-        Y_train = Y[:split_index]
-        Y_test = Y[split_index:]
-        print("(X_train, Y_train, X_test, Y_test) Shapes:")
-        print(X_train.shape, Y_train.shape, X_test.shape, Y_test.shape)
-        return X_train, Y_train, X_test, Y_test
-    
-    return X, Y
 
 def build_model(features, neurons, drop_out, decay=0.0):
     model = Sequential()
@@ -70,8 +45,8 @@ def final_test_ffnn(stock_symbol, start_date, end_date, window, future_gap, neur
     print("\n> reshaping the dataset for FFNN...")
     ds_train = df_train.values
     ds_test = df_test.values
-    X_train, Y_train = ffnn_dataset_reshape(ds_train, future_gap, None)
-    X_test, Y_test = ffnn_dataset_reshape(ds_test, future_gap, None)
+    X_train, Y_train = dataset_split(ds_train, future_gap, None)
+    X_test, Y_test = dataset_split(ds_test, future_gap, None)
     #building the FFNN model
     print("\n> building the FFNN model...")
     features = X_train.shape[1]
