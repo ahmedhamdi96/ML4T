@@ -37,10 +37,12 @@ normalized_metrics, inv_normalized_metrics, df = lstm.final_test_lstm(stock, sta
 end_date, window, future_gap, time_steps, neurons, drop_out, batch_size, epochs, validation_split, 
 verbose, callbacks)
 metrics_dic['LSTM'] = normalized_metrics
-plot_data(df, stock+" 2017 Price Forecast (LSTM)", "Date", "Price", show_plot=False)
 #PAL
 lookup = 5
 lag_list = compute_lag_metric(df['Actual'], df['Prediction'], lookup, stock)
+df = df[:len(df)-lookup+1]
+#Price Forecast Plot
+plot_data(df, stock+" 2017 Price Forecast (LSTM)", "Date", "Price", show_plot=False)
 #Price Forecast and PAL Overlay Plot
 ax = df.plot(title=stock+" 2017 Price Forecast and PAL Overlay")
 ax.set_xlabel("Date")
@@ -55,10 +57,12 @@ ax1.set_ylabel("PAL")
 normalized_metrics, inv_normalized_metrics, df = lin_reg.final_test_linreg(stock, start_date, 
 end_date, window, future_gap)
 metrics_dic['LinReg'] = normalized_metrics
-plot_data(df, stock+" 2017 Price Forecast (LinReg)", "Date", "Price", show_plot=False)
 #PAL
 lookup = 5
 lag_list = compute_lag_metric(df['Actual'], df['Prediction'], lookup, stock)
+df = df[:len(df)-lookup+1]
+#Price Forecast Plot
+plot_data(df, stock+" 2017 Price Forecast (LinReg)", "Date", "Price", show_plot=False)
 #Price Forecast and PAL Overlay Plot
 ax = df.plot(title=stock+" 2017 Price Forecast and PAL Overlay")
 ax.set_xlabel("Date")

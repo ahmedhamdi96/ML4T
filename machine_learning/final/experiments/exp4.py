@@ -39,7 +39,7 @@ for future_gap in future_gap_list:
     end_date, window, future_gap, time_steps, neurons, drop_out, batch_size, epochs, validation_split, 
     verbose, callbacks)
     future_gap_metrics[future_gap] = normalized_metrics
-    plot_data(df, 'Future Gap = '+future_gap, "Date", "Price", show_plot=False)
+    plot_data(df, 'Future Gap = '+str(future_gap), "Date", "Price", show_plot=False)
 
 print(future_gap_metrics)
 plt.show()

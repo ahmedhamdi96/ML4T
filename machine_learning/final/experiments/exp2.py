@@ -31,7 +31,7 @@ validation_split, verbose, callbacks)
 lookup = 5
 lag_list = compute_lag_metric(df['Actual'], df['Prediction'], lookup, stock)
 #Price Forecast Plot
-df_test = df[:len(df)-lookup+1]
+df = df[:len(df)-lookup+1]
 ax = df.plot(title=stock+" Price Forecast")
 ax.set_xlabel("Date")
 ax.set_ylabel("Price")
@@ -42,7 +42,7 @@ ax.annotate('Normal Movement', xy=('2013-02-15', 40), xytext=('2013-03-05', 50),
 ax.annotate('Sudden Change', xy=('2013-05-10', 55), xytext=('2013-03-05', 70), fontsize=10,
             arrowprops=dict(facecolor='black', shrink=0.1, headwidth=8))
 #Price Forecast and PAL Overlay Plot
-ax = df_test.plot(title=stock+" Price Forecast and PAL Overlay")
+ax = df.plot(title=stock+" Price Forecast and PAL Overlay")
 ax.set_xlabel("Date")
 ax.set_ylabel("Price")
 ax.legend(loc="best")
@@ -52,7 +52,7 @@ ax.annotate('Normal Movement', xy=('2013-02-15', 40), xytext=('2013-03-05', 50),
 ax.annotate('Sudden Change', xy=('2013-05-10', 55), xytext=('2013-03-05', 70), fontsize=10,
             arrowprops=dict(facecolor='black', shrink=0.1, headwidth=8))
 ax1 = ax.twinx()
-ax1.scatter(df_test.index, lag_list, c='g')
+ax1.scatter(df.index, lag_list, c='g')
 ax1.set_ylabel("PAL")
 
 plt.show()
