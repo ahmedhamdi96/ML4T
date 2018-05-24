@@ -35,12 +35,6 @@ def compute_vroc_ratio(volume, window):
     #first window-1 elements >> NA
     vroc_ratio = (volume/volume.shift(periods = window)) - 1
     return vroc_ratio
-
-def compute_daily_return_volatility(prices, window):
-    #first window-1 elements >> NA
-    daily_return = (prices/prices.shift(periods= 1)) - 1
-    volatility = daily_return.rolling(window=window).std()
-    return volatility
 #END
 
 def bulid_TIs_dataset(stock_symbol, start_date, end_date, window, normalize=True):
