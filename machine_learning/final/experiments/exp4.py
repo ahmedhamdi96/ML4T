@@ -4,9 +4,9 @@ from keras.callbacks import EarlyStopping
 import matplotlib.pyplot as plt
 
 #future gap
-stock = 'AAPL'
+stock = 'MSFT'
 dates_dic = {
-    'AAPL'  : ['2017-01-01', '2018-01-01']
+    'MSFT'  : ['2017-01-01', '2018-01-01']
 }
 
 window = 2

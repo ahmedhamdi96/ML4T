@@ -61,9 +61,10 @@ def compute_lag_metric(actual, prediction, lookup, symbol):
     ax.grid(True)
 
     _, ax1 = plt.subplots()
-    ax1.scatter(range(len(lag_list)), lag_list)
+    index = actual[:len(actual)-lookup+1].index
+    ax1.scatter(index, lag_list)
     plt.title(symbol+" Daily Lag Test")
-    ax1.set_xlabel('Trading Day')
+    ax1.set_xlabel('Date')
     ax1.set_ylabel('Lag')
     ax1.grid(True)
 
