@@ -110,7 +110,7 @@ New metrics to evaluate the performance of the model over different future gaps.
 A test to compare between the linear regressor, FFNN, and LSTM RNN over different future gaps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/future_gap.md).
 
 ### LSTM RNN vs LSTM FFNN
-Attempting to model the FFNN as an LSTM NN by using the features as time steps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/time_steps.md).
+Attempting to model the FFNN as an LSTM NN by using the prices as features to model time steps in a RNN. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/time_steps.md).
 
 ## Analysis
 *Analysing the tests using a novel metric*
