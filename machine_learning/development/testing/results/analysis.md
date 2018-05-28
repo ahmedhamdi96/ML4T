@@ -30,12 +30,4 @@ This forecast is used to predict the tesla stock for a duration between 01/01/20
 
 ![SvN w/ PAL](https://github.com/ahmedhamdi96/ML4T/blob/master/results/sudden_vs_normal_pal.png)
 
-### Stable (Amazon) Stock vs Volatile(Tesla) Stock Forecast
-
-![Stable](https://github.com/ahmedhamdi96/ML4T/blob/master/results/stable.png)
-
-![Stable Lag](https://github.com/ahmedhamdi96/ML4T/blob/master/results/stable_lag.png)
-
-![Volatile](https://github.com/ahmedhamdi96/ML4T/blob/master/results/volatile.png)
-
-![Volatile Lag](https://github.com/ahmedhamdi96/ML4T/blob/master/results/volatile_lag.png)
+![SvN w/ PAL 1](https://github.com/ahmedhamdi96/ML4T/blob/master/results/sudden_vs_normal_pal_1.png)

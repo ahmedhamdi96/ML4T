@@ -1,14 +1,6 @@
 from machine_learning.development.optimized_lstm import lstm
 from keras.callbacks import EarlyStopping
 
-#volatile vs stable
-'''stocks_list = ['TSLA', 'AMZN']
-show_plot = len(stocks_list)
-dates_dic = {
-    'TSLA': ['2013-01-01', '2018-01-01'],
-    'AMZN': ['2013-01-01', '2018-01-01'],
-    }
-'''
 #sudden vs normal
 stocks_list = ['TSLA']
 show_plot = len(stocks_list)
