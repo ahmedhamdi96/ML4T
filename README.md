@@ -52,7 +52,7 @@ with each other? A grading criteria should be designed to compare and assess the
     * The model is trained on the period starting from a company's first public trading day till the day 
     before the required testing period.
 
-### During Times of Change
+### Companies During Times of Change
 *Predicting Stock prices for a portfolio of 4 companies during different interesting time periods*
 
 * **[Facebook](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/facebook.md)**
@@ -105,6 +105,9 @@ A test to determine the optimal window and time steps. See results [here](https:
 
 ### Evaluation Metrics
 New metrics to evaluate the performance of the model over different future gaps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/eval.md).
+
+### Future Gap Test
+A test to compare between the linear regressor, FFNN, and LSTM RNN over different future gaps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/future_gap.md).
 
 ## Analysis
 *Analysing the tests using a novel metric*
