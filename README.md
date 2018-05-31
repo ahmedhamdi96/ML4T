@@ -5,37 +5,21 @@
 *GUC 2018 Bachelor Thesis Project*
 
 Stock market prediction is an interesting realm to test the capabilities of machine learning
-on. The nature of the stock market is volatile, complicated, and very sensitive to external 
-information, which makes it difficult to predict. Different machine learning models are 
-developed to forecast future stock prices. Technical indicators are computed using historical 
-stock prices to provide the machine learning model with a daily time series of a stock prices 
-indications to learn and develop its prediction engine based on. The models used are: Linear 
-Regressor, kNN Regressor, FFNN, and RNN LSTM. The prediction models are compared 
-and evaluated using different metrics. Several case studies are performed to evaluate the 
-performance of the prediction model. From the case studies, few results are obtained: 
+on. The nature of the stock market is volatile, sophisticated, and very sensitive to external
+information, which makes it difficult to predict. Different machine learning models
+are developed to forecast future stock prices. Using historical stock market data, technical
+indicators are computed and used along with a stock’s price as features associated
+with a target output, which is the future stock price. This provides a dataset that the
+machine learning models use to train upon, and thus the models become capable of predicting
+future prices. The models used are: linear regressor, kNN regressor, Feedforward
+Neural Network (FFNN), and Long Short Term Memory (LSTM) Recurrent Neural Network
+(RNN). The prediction models are compared and evaluated using different metrics.
+Several case studies are performed to evaluate the performance of the machine learning
+models. From the case studies, few insights have been made:
 
-1. Technical indicators can be used to teach a machine learning model about the nature of 
-a certain stock in the stock market, the model can then be used to predict future prices. 
-2. The model is capable of predicting the price and the fluctuations in price caused by the 
-stock market movement. 
-3. The model naturally lags on picking up on external events that impact the stock price suddenly.
-4. The LSTM RNN outperformed all the other models.
-
-The research mainly aims to exploit the capabilities of machine learning in the field of stock trading.
-It also aims to propose backed-up hypothesis and analysis on the capabilities of machine learning in
-the domain of stock price prediction.
-
-The research questions for the bachelor thesis are:
-
-* *Can machine learning be used to predict future stock prices?*
-
-Is it possible to design a machine learning model that is trained  on historical prices of a 
-certain stock, and to be able to query the model for future prices? How reliable will the model
-be? What are the model's constraints, guarantees, and weaknesses?
-* *How does the performance of different machine learning algorithms vary?*
-
-Which machine learning algorithm does the best job, and how do the different algorithms compare
-with each other? A grading criteria should be designed to compare and assess the algorithms.
+1. The LSTM RNN outperformed all the other models.
+2. The LSTM RNN model is capable of accurately predicting the next-day price unless a major external event impacts the stock price suddenly.
+3. The LSTM RNN model naturally lags on picking up on external events that impact the stock price suddenly.
 
 ## Algorithms Evaluation
 *Development Phase*
@@ -74,26 +58,19 @@ with each other? A grading criteria should be designed to compare and assess the
     and the company entered the "post-Steve Jobs" era where the company's next generation 
     of leaders and products were in question.
 
-
 * **[Tesla](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/tesla.md)**
 
   *Tesla started trading publicly on 29/06/2010.*
 
-  Tesla's stock is volatile as a result of many factors including: failing to meet plans 
-  and expensive acquisitions and investments.
+  * Disappointing Q3 Reports, [September/2013 - November/2013]
 
-  * Analysts downgrades, [September/2013 - November/2013]
-
-    Lowered volume expectations for Model X and Model 3, a lower valuation for Tesla Energy, 
-    and accelerating competition in the mobility business were some of the reasons analysts
-    lowered Tesla's stock price target.
+    Tesla reported disappointing third quarter nancial results. In addition, 
+    a third widely-reported fire involving a Model S in just two months was 
+    putting Tesla under heat.
 
 * **[Amazon](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/amazon.md)**
 
   *Amazon started trading publicly on 15/05/1997.*
-
-  Overall Amazon's stock throughout its run since 1997 has been healthy, with projections mostly 
-  heading upwards and with little volatility.
 
   * Exceeding Q3 expectations, [September/2017 - February/2018]
 
@@ -108,9 +85,6 @@ New metrics to evaluate the performance of the model over different future gaps.
 
 ### Future Gap Test
 A test to compare between the linear regressor, FFNN, and LSTM RNN over different future gaps. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/future_gap.md).
-
-### LSTM RNN vs LSTM FFNN
-Attempting to model the FFNN as an LSTM NN by using the prices as features to model time steps in a RNN. See results [here](https://github.com/ahmedhamdi96/ML4T/blob/master/machine_learning/development/testing/results/time_steps.md).
 
 ## Analysis
 *Analysing the tests using a novel metric*
