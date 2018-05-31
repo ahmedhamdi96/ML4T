@@ -64,7 +64,7 @@ models. From the case studies, few insights have been made:
 
   * Disappointing Q3 Reports, [September/2013 - November/2013]
 
-    Tesla reported disappointing third quarter nancial results. In addition, 
+    Tesla reported disappointing third quarter financial results. In addition, 
     a third widely-reported fire involving a Model S in just two months was 
     putting Tesla under heat.
 
